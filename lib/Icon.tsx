@@ -1,8 +1,5 @@
 import React from 'react'
-import './icons/emoji-happy.svg'
-import './icons/emoji-cool.svg'
-import './icons/emoji-shocked.svg'
-import './icons/emoji-angry.svg'
+import './importIcons.js'
 
 interface IconProps {
   name: string;
