@@ -1,5 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Button from './button'
+import Icon from './Icon'
 
-ReactDOM.render(<Button />, document.getElementById('app'))
+ReactDOM.render(<div>
+  <Icon name="emoji-happy" />
+  <Icon name="emoji-cool" />
+  <Icon name="emoji-shocked" />
+</div>, document.getElementById('app'))
