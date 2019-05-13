@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from './Icon';
 
-const fn = () => {
-  console.log('click');
+const fn = (e) => {
+  console.log(e.target.href);
 };
 
 ReactDOM.render(<div>

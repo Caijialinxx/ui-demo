@@ -6,7 +6,7 @@ import joinClasses from './helpers/joinClasses';
 interface IconProps {
   name: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<SVGSVGElement | SVGUseElement>;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
