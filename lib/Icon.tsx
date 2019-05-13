@@ -8,8 +8,8 @@ interface IconProps {
 const Icon: React.FunctionComponent<IconProps> = (props) => {
   return (
   <svg width="1em" height="1em">
-    <use xlinkHref={`#${props.name}`}></use>
+    <use xlinkHref={`#${props.name}`} />
   </svg>)
-}
+};
 
 export default Icon
