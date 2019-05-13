@@ -3,16 +3,14 @@ import './importIcons.js';
 import './Icon.scss';
 import joinClasses from './helpers/joinClasses';
 
-interface IconProps {
+interface IconProps extends React.SVGAttributes<SVGSVGElement | SVGUseElement> {
   name: string;
-  className?: string;
-  onClick?: React.MouseEventHandler<SVGSVGElement | SVGUseElement>;
 }
 
-const Icon: React.FunctionComponent<IconProps> = (props) => {
+const Icon: React.FunctionComponent<IconProps> = ({name, className, ...restProps}) => {
   return (
-    <svg className={joinClasses('cui-icon', props.className)} onClick={props.onClick}>
-      <use xlinkHref={`#${props.name}`}/>
+    <svg className={joinClasses('cui-icon', className)} {...restProps}>
+      <use xlinkHref={`#${name}`}/>
     </svg>);
 };
 

@@ -7,7 +7,7 @@ const fn = (e) => {
 };
 
 ReactDOM.render(<div>
-  <Icon name="emoji-happy" className="icon" onClick={fn}/>
+  <Icon name="emoji-happy" className="icon" onClick={fn} onMouseEnter={() => console.log('enter')}/>
   <Icon name="emoji-cool"/>
   <Icon name="emoji-shocked"/>
 </div>, document.getElementById('app'));
