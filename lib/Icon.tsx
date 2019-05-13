@@ -1,5 +1,5 @@
-import React from 'react'
-import './importIcons.js'
+import React from 'react';
+import './importIcons.js';
 
 interface IconProps {
   name: string;
@@ -7,9 +7,9 @@ interface IconProps {
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
   return (
-  <svg width="1em" height="1em">
-    <use xlinkHref={`#${props.name}`} />
-  </svg>)
+    <svg width="1em" height="1em">
+      <use xlinkHref={`#${props.name}`}/>
+    </svg>);
 };
 
-export default Icon
+export default Icon;
