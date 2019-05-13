@@ -1,13 +1,13 @@
 import React from 'react';
 import './importIcons.js';
-
+import './Icon.scss'
 interface IconProps {
   name: string;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
   return (
-    <svg width="1em" height="1em">
+    <svg className="cui-icon">
       <use xlinkHref={`#${props.name}`}/>
     </svg>);
 };
