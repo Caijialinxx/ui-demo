@@ -1,8 +1,9 @@
 {
-  "name": "ui-demo",
-  "version": "1.0.0",
+  "name": "cui-demo",
+  "version": "0.0.2",
   "description": "React UI库",
   "main": "index.js",
+  "files": ["/dist"],
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.js --runInBand",
