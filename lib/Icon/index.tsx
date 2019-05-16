@@ -1,5 +1,5 @@
 import React from 'react';
-import '../importIcons.js';
+import './importIcons.js';
 import './index.scss';
 import joinClasses from '../helpers/joinClasses';
 
