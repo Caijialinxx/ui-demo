@@ -19,14 +19,3 @@ exports[`Icon 传name、className 1`] = `
   />
 </svg>
 `;
-
-exports[`Icon 传name、className、事件 1`] = `
-<svg
-  className="cui-icon icon"
-  onClick={[Function]}
->
-  <use
-    xlinkHref="#emoji-happy"
-  />
-</svg>
-`;
