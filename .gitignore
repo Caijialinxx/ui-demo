@@ -1,6 +1,7 @@
 FIXBUGS.md
 /dist/*
 /.idea
+/test-results/
 
 # Logs
 logs
