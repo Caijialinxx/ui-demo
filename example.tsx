@@ -16,10 +16,14 @@ ReactDOM.render(
             <li>
               <Link to="/icon">Icon</Link>
             </li>
+            <li>
+              <Link to="/dialog">Dialog</Link>
+            </li>
           </ul>
         </aside>
         <main>
           <Route path="/icon" component={Example.Icon}/>
+          <Route path="/dialog" component={Example.Dialog}/>
         </main>
       </div>
     </div>

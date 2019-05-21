@@ -1,0 +1,56 @@
+@import '../global.scss';
+
+.cui-dialog {
+  position: fixed;
+  width: 440px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  &-close {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    background: transparent;
+    > .cui-icon {
+      fill: $text_color;
+      transition: all 0.2s;
+    }
+    &:hover > .cui-icon {
+      fill: $primary;
+    }
+  }
+  &-header {
+    font-size: 1.2em;
+    font-weight: 500;
+    padding: 14px 18px 6px;
+  }
+  &-body {
+    padding: 18px;
+  }
+  &-footer {
+    padding: 4px 18px 14px;
+    text-align: right;
+    button + button {
+      margin-left: 8px;
+    }
+  }
+  &-button__confirm {
+    background-color: $primary;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+    &:hover { background-color: $light_primary; }
+    &:active { background-color: $dark_primary; }
+  }
+  &-mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: fade_out(black, 0.4); }
+}

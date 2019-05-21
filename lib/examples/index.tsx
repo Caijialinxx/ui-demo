@@ -1,3 +1,4 @@
-import Icon from './icon';
+import Icon from './icon.example';
+import Dialog from './dialog.example';
 
-export {Icon};
+export {Icon, Dialog};

@@ -1,0 +1,9 @@
+@import './global.scss';
+
+[class^=cui-] {
+  color: $text_color;
+  box-sizing: border-box;
+  &::after, &::before {
+    box-sizing: border-box;
+  }
+}
