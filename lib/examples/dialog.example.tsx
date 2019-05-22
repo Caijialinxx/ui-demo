@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Dialog, Button} from '../index';
+import {Dialog, Button, alert} from '../index';
 
 const DialogExample: React.FunctionComponent = () => {
   const [example1, setExample1] = useState(false);
@@ -20,6 +20,11 @@ const DialogExample: React.FunctionComponent = () => {
             <p>还可以设置footer为一个ReactNode类型来可自定义脚部</p>
           </Fragment>
         </Dialog>
+      </Fragment>
+      <Fragment>
+        <Button onClick={() => {
+          alert('这是一条警告');
+        }}>Dialog.alert</Button>
       </Fragment>
     </div>
   );

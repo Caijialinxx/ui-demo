@@ -1,4 +1,5 @@
 import React, {Fragment, ReactNode} from 'react';
+import ReactDOM from 'react-dom';
 import './index.scss';
 import Icon from '../Icon';
 import Button from '../Button';
@@ -53,5 +54,26 @@ Dialog.defaultProps = {
   closeable: true,
   maskCloseable: true,
 };
+
+const alert = (content: string, title?: string) => {
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+
+  const onClose = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+  };
+  const component = (
+    <Dialog visible={true} title={title} closeable={false} maskCloseable={false}
+            footer={<Button onClick={onClose}
+                            className={setCN('button__confirm')}>知道了</Button>}>
+      {content}
+    </Dialog>
+  );
+  ReactDOM.render(component, div);
+};
+
+export {alert};
 
 export default Dialog;
