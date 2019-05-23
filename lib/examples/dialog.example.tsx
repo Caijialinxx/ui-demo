@@ -14,7 +14,8 @@ const DialogExample: React.FunctionComponent = () => {
       </Fragment>
       <Fragment>
         <Button onClick={() => setExample2(!example2)}>自定义footer</Button>
-        <Dialog title="自定义footer" footer={<Button onClick={() => setExample2(false)}>知道了</Button>} visible={example2} onCancel={() => setExample2(false)}>
+        <Dialog title="自定义footer" footer={<Button onClick={() => setExample2(false)}>知道了</Button>} visible={example2}
+                onCancel={() => setExample2(false)}>
           <Fragment>
             <p>设置footer为null可取消默认的脚部</p>
             <p>还可以设置footer为一个ReactNode类型来可自定义脚部</p>
@@ -23,7 +24,14 @@ const DialogExample: React.FunctionComponent = () => {
       </Fragment>
       <Fragment>
         <Button onClick={() => {
-          alert('这是一条警告');
+          alert({
+            content: '这是一条警告',
+            title: '标题',
+            onOk: (close) => {
+              console.log('知道了');
+              close();
+            }
+          });
         }}>alert</Button>
         <Button onClick={() => {
           confirm({

@@ -55,7 +55,9 @@ Dialog.defaultProps = {
   maskCloseable: true,
 };
 
-const alert = (content: string, title?: string) => {
+const alert = (contentOrProps: string | DialogFuncProps, title?: string) => {
+  const _content = typeof contentOrProps === 'string' ? contentOrProps : contentOrProps.content;
+  const _title = typeof contentOrProps === 'string' ? title : contentOrProps.title;
   const div = document.createElement('div');
   document.body.appendChild(div);
 
@@ -65,10 +67,12 @@ const alert = (content: string, title?: string) => {
     div.remove();
   };
   const component = (
-    <Dialog visible={true} title={title} closeable={false} maskCloseable={false}
-            footer={<Button onClick={onClose}
-                            className={setCN('button__confirm')}>知道了</Button>}>
-      {content}
+    <Dialog visible={true} title={_title} closeable={false} maskCloseable={false}
+            footer={<Button className={setCN('button__confirm')} autoFocus={true}
+                            onClick={() => {
+                              typeof contentOrProps === 'object' && contentOrProps.onOk ? contentOrProps.onOk(onClose) : onClose();
+                            }}>知道了</Button>}>
+      {_content}
     </Dialog>
   );
   ReactDOM.render(component, div);
@@ -82,7 +86,6 @@ interface DialogFuncProps {
 }
 
 const confirm = (props: DialogFuncProps) => {
-  console.log(props);
   const div = document.createElement('div');
   document.body.appendChild(div);
 
