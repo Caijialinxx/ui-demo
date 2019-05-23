@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Dialog, Button, alert} from '../index';
+import {Dialog, Button, alert, confirm} from '../index';
 
 const DialogExample: React.FunctionComponent = () => {
   const [example1, setExample1] = useState(false);
@@ -24,7 +24,17 @@ const DialogExample: React.FunctionComponent = () => {
       <Fragment>
         <Button onClick={() => {
           alert('这是一条警告');
-        }}>Dialog.alert</Button>
+        }}>alert</Button>
+        <Button onClick={() => {
+          confirm({
+            content: '这是一个确认框',
+            title: 'Confirm',
+            onOk: (close) => {
+              console.log('按了确定');
+              close();
+            }
+          });
+        }}>confirm</Button>
       </Fragment>
     </div>
   );

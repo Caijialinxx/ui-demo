@@ -6,7 +6,7 @@ import Button from '../Button';
 import {scopeClassMaker} from '../helpers';
 
 interface DialogProps {
-  visible: boolean;
+  visible?: boolean;
   onOk?: () => void;
   onCancel?: () => void;
   title?: string | ReactNode;
@@ -74,6 +74,41 @@ const alert = (content: string, title?: string) => {
   ReactDOM.render(component, div);
 };
 
-export {alert};
+interface DialogFuncProps {
+  content: string;
+  title?: string;
+  onOk?: (callback: () => void) => void;
+  onCancel?: (callback: () => void) => void;
+}
+
+const confirm = (props: DialogFuncProps) => {
+  console.log(props);
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+
+  const onClose = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+  };
+
+  const component = (
+    <Dialog visible={true} title={props.title} closeable={false} maskCloseable={false}
+            footer={
+              <Fragment>
+                <Button autoFocus={true} onClick={() => {
+                  props.onCancel ? props.onCancel(onClose) : onClose();
+                }}>取消</Button>
+                <Button autoFocus={true} onClick={() => {
+                  props.onOk ? props.onOk(onClose) : onClose();
+                }} className={setCN('button__confirm')}>确定</Button>
+              </Fragment>}>
+      {props.content}
+    </Dialog>
+  );
+  ReactDOM.render(component, div);
+};
+
+export {alert, confirm};
 
 export default Dialog;
