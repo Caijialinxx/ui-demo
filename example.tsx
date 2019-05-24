@@ -19,11 +19,15 @@ ReactDOM.render(
             <li>
               <Link to="/dialog">Dialog</Link>
             </li>
+            <li>
+              <Link to="/layout">Layout</Link>
+            </li>
           </ul>
         </aside>
         <main>
           <Route path="/icon" component={Example.Icon}/>
           <Route path="/dialog" component={Example.Dialog}/>
+          <Route path="/layout" component={Example.Layout}/>
         </main>
       </div>
     </div>
