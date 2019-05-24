@@ -12,7 +12,7 @@ interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
 const Layout: React.FunctionComponent<LayoutProps> = ({className, children, ...restProps}) => {
   const hasAside = (children as Array<ReactElement>).some(child => child.type === Aside);
   return (
-    <section className={setCN('', hasAside ? [setCN('has-aside'), className || ''] : className)} {...restProps}>
+    <section className={setCN('', hasAside ? setCN('has-aside') : '', className)} {...restProps}>
       {children}
     </section>);
 };
