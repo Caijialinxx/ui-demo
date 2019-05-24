@@ -1,50 +1,51 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import './index.scss'
 import {Aside, Content, Footer, Header, Layout} from '../index';
 
 const LayoutExample: React.FunctionComponent = () => {
   return (
     <div>
-      <Fragment>
+      <div className="demo-box">
         <h3>普通布局</h3>
         <Layout>
-          <Header>header</Header>
-          <Content>content</Content>
-          <Footer>footer</Footer>
+          <Header className="demo-inner">header</Header>
+          <Content className="demo-inner">content</Content>
+          <Footer className="demo-inner">footer</Footer>
         </Layout>
-      </Fragment>
-      <Fragment>
+      </div>
+      <div className="demo-box">
         <h3>侧边栏在局部左边</h3>
         <Layout>
-          <Header>header</Header>
-          <Layout>
-            <Aside>aside</Aside>
-            <Content>content</Content>
+          <Header className="demo-inner">header</Header>
+          <Layout className="demo-inner-layout">
+            <Aside className="demo-inner">aside</Aside>
+            <Content className="demo-inner">content</Content>
           </Layout>
-          <Footer>footer</Footer>
+          <Footer className="demo-inner">footer</Footer>
         </Layout>
-      </Fragment>
-      <Fragment>
+      </div>
+      <div className="demo-box">
         <h3>侧边栏在局部右边</h3>
         <Layout>
-          <Header>header</Header>
-          <Layout>
-            <Content>content</Content>
-            <Aside>aside</Aside>
+          <Header className="demo-inner">header</Header>
+          <Layout className="demo-inner-layout">
+            <Content className="demo-inner">content</Content>
+            <Aside className="demo-inner">aside</Aside>
           </Layout>
-          <Footer>footer</Footer>
+          <Footer className="demo-inner">footer</Footer>
         </Layout>
-      </Fragment>
-      <Fragment>
-        <h3>侧边栏在全局左边</h3>
-        <Layout>
-          <Aside>aside</Aside>
-          <Layout>
-            <Header>header</Header>
-            <Content>content</Content>
-            <Footer>footer</Footer>
-          </Layout>
-        </Layout>
-      </Fragment>
+      </div>
+      {/*<div className="demo-box">*/}
+      {/*  <h3>侧边栏在全局左边</h3>*/}
+      {/*  <Layout>*/}
+      {/*    <Aside className="demo-inner">aside</Aside>*/}
+      {/*    <Layout  className="demo-inner-layout">*/}
+      {/*      <Header className="demo-inner">header</Header>*/}
+      {/*      <Content className="demo-inner">content</Content>*/}
+      {/*      <Footer className="demo-inner">footer</Footer>*/}
+      {/*    </Layout>*/}
+      {/*  </Layout>*/}
+      {/*</div>*/}
     </div>
   );
 };

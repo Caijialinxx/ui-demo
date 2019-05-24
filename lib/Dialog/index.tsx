@@ -23,7 +23,7 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
     props.visible ?
       <Fragment>
         <div className={setCN('mask')} onClick={() => props.maskCloseable ? props.onCancel && props.onCancel() : null}/>
-        <div className={setCN()}>
+        <div className={setCN('')}>
           {props.closeable ?
             <button onClick={props.onCancel} className={setCN('close')}><Icon name="close"/></button> : null}
           {
