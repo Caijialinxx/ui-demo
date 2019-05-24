@@ -19,7 +19,7 @@ const setClassName = scopeClassMaker('cui-dialog');
 const setCN = setClassName;
 
 const Dialog: React.FunctionComponent<DialogProps> = (props) => {
-  return (
+  const dialogComponent = (
     props.visible ?
       <Fragment>
         <div className={setCN('mask')} onClick={() => props.maskCloseable ? props.onCancel && props.onCancel() : null}/>
@@ -48,6 +48,7 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
       </Fragment>
       : null
   );
+  return ReactDOM.createPortal(dialogComponent, document.body);
 };
 
 Dialog.defaultProps = {
