@@ -16,8 +16,5 @@
       &.cui-layout-content { background-color: $dark_primary; min-height: 120px; line-height: 120px; }
       &.cui-layout-aside { min-width: 100px; background-color: $primary; min-height: 120px; line-height: 120px; }
     }
-    .demo-inner-layout {
-      flex-direction: row;
-    }
   }
 }
