@@ -1,5 +1,9 @@
 function scopeClassMaker(prefix: string) {
-  return (name?: string) => [prefix, name].filter(Boolean).join('-');
+  return (suffix: string, extra?: string | string[]) =>
+    [[prefix, suffix].filter(Boolean).join('-')]
+      .concat(extra instanceof Array ? extra : [extra || ''])
+      .filter(Boolean)
+      .join(' ');
 }
 
 export {scopeClassMaker};
