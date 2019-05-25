@@ -1,0 +1,63 @@
+@import "lib/global.scss";
+
+.examples-doc {
+  width: 100vw;
+  height: 100vh;
+  font-size: 14px;
+  * { margin: 0; }
+  ul { list-style: none; padding: 0; }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 1.3em; }
+  a { text-decoration: none; color: inherit; }
+  .header {
+    box-shadow: 0 1px 10px 1px #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .body { padding-top: 10px; }
+  .main-menu {
+    width: 20%;
+    max-width: 280px;
+    min-width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 1px solid #eaeaea;
+    .menu-title, .menu-item {
+      height: 36px;
+      line-height: 36px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 4px 0;
+      padding-right: 10px;
+    }
+    .menu-title {
+      padding-left: 40px;
+      font-weight: bold;
+    }
+    .sub-menu > .menu-item { padding-left: 66px; }
+  }
+  .main-content-wrapper {
+    overflow-y: auto;
+    .main-content {
+      padding: 0 40px;
+    }
+  }
+  .footer {
+    color: $grey;
+    text-align: center;
+    background-color: black;
+  }
+}
