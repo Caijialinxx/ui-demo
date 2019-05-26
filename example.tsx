@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Link, Route} from 'react-router-dom';
-import './example.scss';
+import {HashRouter as Router, NavLink, Route} from 'react-router-dom';
 import * as Example from './lib/examples';
 import {Aside, Content, Footer, Header, Layout} from './lib';
+import './example.scss';
 
 ReactDOM.render(
   <Router>
@@ -22,13 +22,13 @@ ReactDOM.render(
           <p className="menu-title">组件</p>
           <ul className="sub-menu">
             <li className="menu-item">
-              <Link to="/icon">Icon</Link>
+              <NavLink to="/icon">Icon</NavLink>
             </li>
             <li className="menu-item">
-              <Link to="/dialog">Dialog</Link>
+              <NavLink to="/dialog">Dialog</NavLink>
             </li>
             <li className="menu-item">
-              <Link to="/layout">Layout</Link>
+              <NavLink to="/layout">Layout</NavLink>
             </li>
           </ul>
         </Aside>
