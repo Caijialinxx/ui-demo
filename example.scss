@@ -10,7 +10,7 @@ $border_grey: #eaeaea;
   height: 100vh;
   font-size: 14px;
   color: $text_grey;
-  * { margin: 0; }
+  * { margin: 0; box-sizing: border-box }
   ul { list-style: none; padding: 0; }
   h1 { font-size: 2em; }
   h2 { font-size: 1.6em; }
@@ -70,6 +70,28 @@ $border_grey: #eaeaea;
     overflow-y: auto;
     .main-content {
       padding: 0 40px;
+    }
+    .demos-container {
+      display: flex;
+      flex-wrap: wrap;
+      .demo-wrapper {
+        width: 50%;
+        min-width: 300px;
+        padding: 0 8px;
+      }
+      .demo-box {
+        width: 100%;
+        margin: 0 0 16px -8px;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid $border_grey;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        pre {
+          white-space: pre-wrap;
+        }
+      }
     }
   }
   .footer {
