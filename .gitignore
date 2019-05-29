@@ -1,5 +1,6 @@
 FIXBUGS.md
 /dist/*
+/doc/
 /.idea
 /test-results/
 
