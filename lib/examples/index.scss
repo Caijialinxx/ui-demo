@@ -18,3 +18,17 @@
     }
   }
 }
+.cui-form {
+  margin: 20px 0;
+  .cui-form-item-control {
+    > input[type='text'], > input[type='email'], > input[type='number'], > input[type='password'] {
+      width: 100%;
+      border-radius: 4px;
+      padding: 7px 9px;
+      border: 1px solid $grey;
+      outline: none;
+      box-sizing: border-box;
+      font-size: inherit;
+    }
+  }
+}

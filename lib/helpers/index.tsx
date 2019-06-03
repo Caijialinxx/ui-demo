@@ -1,5 +1,5 @@
 function scopeClassMaker(prefix: string) {
-  return (suffix: string, ...extra: Array<string | undefined>) =>
+  return (suffix: string, ...extra: Array<string | undefined | false>) =>
     [[prefix, suffix].filter(Boolean).join('-')]
       .concat(
         extra.filter(Boolean)   // 过滤undefined和''

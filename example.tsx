@@ -30,6 +30,9 @@ ReactDOM.render(
             <li className="menu-item">
               <NavLink to="/layout">Layout</NavLink>
             </li>
+            <li className="menu-item">
+              <NavLink to="/form">Form</NavLink>
+            </li>
           </ul>
         </Aside>
         <Layout className="main-content-wrapper">
@@ -37,6 +40,7 @@ ReactDOM.render(
             <Route path="/icon" component={Example.Icon}/>
             <Route path="/dialog" component={Example.Dialog}/>
             <Route path="/layout" component={Example.Layout}/>
+            <Route path="/form" component={Example.Form}/>
           </Content>
           <Footer className="footer">Made by Caijialinxx</Footer>
         </Layout>
