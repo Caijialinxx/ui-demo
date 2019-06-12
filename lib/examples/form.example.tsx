@@ -14,7 +14,6 @@ const FormExample: React.FunctionComponent = () => {
     {
       key: 'username', label: '用户名',
       component: (<input type="text"/>),
-      rules: [{require: true, errorMessage: '请输入密码！'}]
     },
     {
       key: 'age', label: '年龄',
@@ -32,21 +31,24 @@ const FormExample: React.FunctionComponent = () => {
     },
     {
       key: 'email', label: '电子邮箱',
-      component: (<input type="email"/>),
-      rules: [{require: true, errorMessage: '请输入邮箱！'}, {pattern: /[a-z]/g, errorMessage: '请输入正确的电子邮箱！'}]
+      component: (<input type="text"/>),
     },
     {
       key: 'password', label: '密码',
       component: (<input type="password"/>),
-      rules: [{require: true, errorMessage: '请输入密码！'}]
     }
   ];
-  const onSubmit = (e: FormValues) => {
-    setFormData(e);
-    console.log(e)
+  const formRules = {
+    username: [{required: true, message: '请输入用户名！'}],
+    email: [{required: true, message: '请输入邮箱！'}, {pattern: /^\w+@\w+(\.\w+)+$/, message: '请输入正确的电子邮箱！'}],
+    password: [{required: true, message: '请输入密码！'}, {minLength: 8}]
+  };
+  const onSubmit = (data: FormValues) => {
+    setFormData(data);
   };
   return (
-    <Form data={formData} field={field} onChange={(data) => setFormData(data)} onSubmit={e => onSubmit(e)}/>
+    <Form data={formData} field={field} rules={formRules} onChange={(data) => setFormData(data)}
+          onSubmit={onSubmit}/>
   );
 };
 

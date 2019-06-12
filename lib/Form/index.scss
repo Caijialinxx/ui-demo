@@ -29,6 +29,9 @@ $label-width: 10em;
     &-control {
       width: 100%;
     }
+    &-wrong > input[type='text'] {
+      border-color: $error;
+    }
     &-error {
       position: absolute;
       left: 0;
