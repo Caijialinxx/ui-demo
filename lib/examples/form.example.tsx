@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form, FormValues} from '../index';
+import {Form, FormValues, FormErrors} from '../index';
 
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValues>({
@@ -43,8 +43,8 @@ const FormExample: React.FunctionComponent = () => {
     email: [{required: true, message: '请输入邮箱！'}, {pattern: /^\w+@\w+(\.\w+)+$/, message: '请输入正确的电子邮箱！'}],
     password: [{required: true, message: '请输入密码！'}, {minLength: 8}]
   };
-  const onSubmit = (data: FormValues) => {
-    setFormData(data);
+  const onSubmit = (errors: FormErrors, data: FormValues) => {
+    console.log(errors, data);
   };
   return (
     <Form data={formData} field={field} rules={formRules} onChange={(data) => setFormData(data)}

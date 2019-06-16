@@ -8,6 +8,6 @@ import Header from './Layout/Header';
 import Footer from './Layout/Footer';
 import Content from './Layout/Content';
 import Aside from './Layout/Aside';
-import Form, {FormValues} from './Form';
+import Form, {FormValues, FormErrors} from './Form';
 
-export {Icon, Button, Dialog, alert, confirm, Layout, Header, Footer, Content, Aside, Form, FormValues};
+export {Icon, Button, Dialog, alert, confirm, Layout, Header, Footer, Content, Aside, Form, FormValues, FormErrors};

@@ -22,7 +22,7 @@ interface FormRules {
   [key: string]: Array<FormRule>
 }
 
-interface FormErrors {
+export interface FormErrors {
   [key: string]: string[] | null
 }
 
@@ -66,7 +66,7 @@ interface FormProps {
   }>;
   rules?: FormRules;
   onChange?: (data: FormValues) => void;
-  onSubmit: (data: FormValues) => void;
+  onSubmit?: (errors: FormErrors | null, data: FormValues) => void;
 }
 
 const Form: React.FunctionComponent<FormProps> = (props) => {
@@ -82,12 +82,10 @@ const Form: React.FunctionComponent<FormProps> = (props) => {
     if (!!props.rules) {
       Validate(formData, props.rules, (errors: FormErrors) => {
         setFormErrors(errors);
-        if (Object.keys(errors).length === 0) {
-          props.onSubmit && props.onSubmit(formData);
-        }
+        props.onSubmit && props.onSubmit(Object.keys(errors).length ? errors : null, formData);
       });
     } else {
-      props.onSubmit && props.onSubmit(formData);
+      props.onSubmit && props.onSubmit(null, formData);
     }
   };
   return (
