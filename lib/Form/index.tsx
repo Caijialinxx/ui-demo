@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './index.scss';
 import {scopeClassMaker} from '../helpers';
 import {Button} from '../index';
@@ -26,12 +26,14 @@ interface FormErrors {
   [key: string]: string[] | null
 }
 
-const Validate = (data: FormValues, rules: FormRules): FormErrors => {
-  const errors: FormErrors = {};
-  for (const key in rules) {
-    const itemValue = data[key];
-    const itemErrors: string[] = [];
-    rules[key].map(r => {
+const Validate = (data: FormValues, rules: FormRules, callback?: Function): FormErrors => {
+  const errors: FormErrors | null = {};
+  for (const itemKey in rules) {
+    // 遍历每个字段，获得该字段的数据、所有规则
+    const itemValue = data[itemKey];
+    const itemErrors: string[] = [];  // 存储该字段的所有错误
+    rules[itemKey].map(r => {
+      // 遍历该字段的每个规则
       if (r.required && !itemValue) {
         itemErrors.push(r.message || '不能为空');
       }
@@ -46,9 +48,12 @@ const Validate = (data: FormValues, rules: FormRules): FormErrors => {
         itemErrors.push(r.message || '不合法字符');
         r.pattern.lastIndex = 0;    // 但也可以将其lastIndex直接置为0
       }
-      errors[key] = itemErrors.length > 0 ? itemErrors : null;
+      if (itemErrors.length > 0) {
+        errors[itemKey] = itemErrors;
+      }
     });
   }
+  callback && callback(errors);
   return errors;
 };
 
@@ -72,26 +77,21 @@ const Form: React.FunctionComponent<FormProps> = (props) => {
     props.onChange && props.onChange(newData);
   };
   const [formErrors, setFormErrors] = useState<FormErrors>({});
-  const checkFormData = () => {
+  const onSubmit: React.FormEventHandler = (e) => {
+    e.preventDefault();
     if (!!props.rules) {
-      setFormErrors(Validate(formData, props.rules));
-    }
-  };
-  useEffect(() => {
-    // 检测是否通过验证并执行用户的submit事件
-    const errorKeys = Object.keys(formErrors);
-    let passedNum = 0;
-    errorKeys.map((key) => {
-      if (!formErrors[key]) {
-        passedNum += 1;
-        if (passedNum === errorKeys.length) {
+      Validate(formData, props.rules, (errors: FormErrors) => {
+        setFormErrors(errors);
+        if (Object.keys(errors).length === 0) {
           props.onSubmit && props.onSubmit(formData);
         }
-      }
-    });
-  }, [formErrors]);
+      });
+    } else {
+      props.onSubmit && props.onSubmit(formData);
+    }
+  };
   return (
-    <form className={setCN('')}>
+    <form className={setCN('')} onSubmit={onSubmit}>
       {props.field.map(f => {
         const isRequired = !!props.rules && !!props.rules[f.key] && !!props.rules[f.key].find(r => r.required === true);
         return !!f.component && (
@@ -106,7 +106,7 @@ const Form: React.FunctionComponent<FormProps> = (props) => {
           </div>
         );
       })}
-      <Button onClick={checkFormData} className={setCN('button')}>提交</Button>
+      <Button type="submit" className={setCN('button')}>提交</Button>
     </form>
   );
 };
