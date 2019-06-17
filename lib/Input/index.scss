@@ -1,0 +1,56 @@
+@import '../global.scss';
+
+%input-common {
+  outline: none;
+  line-height: 20px;
+  padding: 6px 8px;
+  font-size: inherit;
+  box-shadow: none;
+  background-color: white;
+  transition: all 0.15s;
+}
+
+.cui-input {
+  @extend %input-common;
+  width: 100%;
+  cursor: text;
+  border: 1px solid $grey;
+  border-radius: 4px;
+  &::placeholder { color: $grey; }
+  &:disabled { cursor: not-allowed; background-color: $light_grey; }
+}
+
+.cui-input-number {
+  width: 120px;
+  padding: 0 34px;
+  display: inline-flex;
+  line-height: normal;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+  border: 1px solid $grey;
+  %controller-common {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 34px;
+    font-size: 1.2em;
+    color: $dark_grey;
+    background-color: lighten($light_grey, 2%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s;
+  }
+  &__decrease { @extend %controller-common; border-right: 1px solid $grey; left: 0; }
+  &__increase { @extend %controller-common; border-left: 1px solid $grey; right: 0; }
+
+  &__input {
+    @extend %input-common;
+    width: 100%;
+    border: none;
+    text-align: center;
+  }
+}

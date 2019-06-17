@@ -9,5 +9,22 @@ import Footer from './Layout/Footer';
 import Content from './Layout/Content';
 import Aside from './Layout/Aside';
 import Form, {FormValues, FormErrors} from './Form';
+import Input, {InputNumber} from './Input';
 
-export {Icon, Button, Dialog, alert, confirm, Layout, Header, Footer, Content, Aside, Form, FormValues, FormErrors};
+export {
+  Icon,
+  Button,
+  Dialog,
+  alert,
+  confirm,
+  Layout,
+  Header,
+  Footer,
+  Content,
+  Aside,
+  Form,
+  FormValues,
+  FormErrors,
+  Input,
+  InputNumber
+};
