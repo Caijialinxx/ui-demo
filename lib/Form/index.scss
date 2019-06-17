@@ -23,13 +23,13 @@ $label-width: 10em;
     &-control-wrapper {
       flex: 1;
       min-width: 220px;
-      line-height: 40px;
       position: relative;
     }
     &-control {
       width: 100%;
+      line-height: 40px;
     }
-    &-wrong > input[type='text'] {
+    &-wrong .cui-input {
       border-color: $error;
     }
     &-error {

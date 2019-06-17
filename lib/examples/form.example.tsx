@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form, FormValues, FormErrors} from '../index';
+import {Form, FormValues, FormErrors, InputNumber, Input} from '../index';
 
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValues>({
@@ -13,11 +13,11 @@ const FormExample: React.FunctionComponent = () => {
   const field = [
     {
       key: 'username', label: '用户名',
-      component: (<input type="text"/>),
+      component: (<Input placeholder="给自己取一个好听的用户名吧"/>),
     },
     {
       key: 'age', label: '年龄',
-      component: (<input type="number"/>),
+      component: (<InputNumber min={0} max={100}/>),
     },
     {
       key: 'city', label: '城市',
@@ -31,11 +31,11 @@ const FormExample: React.FunctionComponent = () => {
     },
     {
       key: 'email', label: '电子邮箱',
-      component: (<input type="text"/>),
+      component: (<Input/>),
     },
     {
       key: 'password', label: '密码',
-      component: (<input type="password"/>),
+      component: (<Input type="password"/>),
     }
   ];
   const formRules = {

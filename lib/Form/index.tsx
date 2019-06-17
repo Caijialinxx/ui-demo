@@ -71,10 +71,11 @@ interface FormProps {
 
 const Form: React.FunctionComponent<FormProps> = (props) => {
   const [formData, setFormData] = useState(props.data);
-  const onChange = (key: string, e: React.ChangeEvent<HTMLFormElement>) => {
+  const onChange = (key: string, component: React.ReactElement, e: React.ChangeEvent<HTMLFormElement>) => {
     const newData = {...formData, [key]: e.target.value};
     setFormData(newData);
-    props.onChange && props.onChange(newData);
+    component.props.onChange ? component.props.onChange(e) :
+      props.onChange && props.onChange(newData);
   };
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const onSubmit: React.FormEventHandler = (e) => {
@@ -97,7 +98,7 @@ const Form: React.FunctionComponent<FormProps> = (props) => {
             <span className={setCN('item-label', isRequired && setCN('item-required'))}>{f.label || f.key}</span>
             <div className={setCN('item-control-wrapper')}>
               <div className={setCN('item-control', !!formErrors[f.key] && setCN('item-wrong'))}>
-                {React.cloneElement(f.component, {onChange: onChange.bind(null, f.key)})}
+                {React.cloneElement(f.component, {onChange: onChange.bind(null, f.key, f.component)})}
               </div>
               {formErrors[f.key] && (<span className={setCN('item-error')}>{formErrors[f.key]![0]}</span>)}
             </div>
