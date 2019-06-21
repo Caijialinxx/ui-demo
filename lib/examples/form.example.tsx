@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Form, FormValues, FormErrors, InputNumber, Input} from '../index';
 
+const names = ['a', 'b', 'c'];
+
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValues>({
     username: undefined,
@@ -39,7 +41,19 @@ const FormExample: React.FunctionComponent = () => {
     }
   ];
   const formRules = {
-    username: [{required: true, message: '请输入用户名！'}],
+    username: [{required: true, message: '请输入用户名！'}, {
+      validator: (value: string) => {
+        return new Promise<string>((resolve, reject) => {
+          if (!value) {
+            reject('没名字');
+          } else {
+            setTimeout(() => {
+              names.indexOf(value) > -1 ? reject('用户名已被占用，请更换！') : resolve();
+            }, 1000);
+          }
+        });
+      }
+    }],
     email: [{required: true, message: '请输入邮箱！'}, {pattern: /^\w+@\w+(\.\w+)+$/, message: '请输入正确的电子邮箱！'}],
     password: [{required: true, message: '请输入密码！'}, {minLength: 8}]
   };

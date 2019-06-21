@@ -1,6 +1,7 @@
 @import "../global.scss";
 
 $label-width: 10em;
+$item-height: 40px;
 
 .cui-form {
   max-width: 600px;
@@ -27,7 +28,7 @@ $label-width: 10em;
     }
     &-control {
       width: 100%;
-      line-height: 40px;
+      line-height: $item-height;
     }
     &-wrong .cui-input {
       border-color: $error;
@@ -35,7 +36,7 @@ $label-width: 10em;
     &-error {
       position: absolute;
       left: 0;
-      bottom: -16px;
+      top: $item-height;
       color: $error;
       font-size: 90%;
       line-height: 16px;
