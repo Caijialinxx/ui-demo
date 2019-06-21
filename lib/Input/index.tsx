@@ -40,6 +40,7 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, prec
       <span onClick={() => calc(false)} className={setCN('number__decrease')}>-</span>
       <span onClick={() => calc(true)} className={setCN('number__increase')}>+</span>
       <input type="text" className={setCN('number__input')} value={_value || ''}
+        // TODO: props.onChange & props.onBlur
              onChange={(e) => setValue(findNumber(e.target.value))}
              onBlur={() => setValue(fixPrecision(checkNumber(_value, min!, max!), precision!))}
              step={step} {...restProps}/>
@@ -56,10 +57,13 @@ InputNumber.defaultProps = {
 const findNumber = (value: any) => String(value).match(/(\-?\d*\.?\d*)|(\d*)/g)!.find(Boolean) || '';
 const fixPrecision = (value: string, precision: number) => {
   let [integer, decimal] = value.split('.');
-  if (!!integer && precision > 0) {
-    let length = !!decimal ? precision - decimal.length : precision;
-    if (!decimal) return integer + '.' + Array.from(Array(length)).map(() => '0').join(''); // 当没有小数时，直接补全n个0
-    return value + Array.from(Array(length)).map(() => '0').join('');
+  if (!!integer) {
+    if (precision > 0) {
+      let length = !!decimal ? precision - decimal.length : precision;
+      if (!decimal) return integer + '.' + Array.from(Array(length)).map(() => '0').join(''); // 当没有小数时，直接补全n个0
+      return value + Array.from(Array(length)).map(() => '0').join('');
+    }
+    return integer;
   }
   return value;
 };
