@@ -4,6 +4,7 @@ $dark_primary: #1b89d1;
 $text_grey: #999999;
 $text_dark_grey: #333333;
 $border_grey: #eaeaea;
+$grey_background: #f2f4f5;
 
 .examples-doc {
   width: 100vw;
@@ -69,28 +70,102 @@ $border_grey: #eaeaea;
   .main-content-wrapper {
     overflow-y: auto;
     .main-content {
-      padding: 0 40px;
+      padding: 0 40px 40px 40px;
+      .markdown {
+        > h1, h2, h3 {
+          font-family: Avenir,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
+          font-weight: 500;
+          color: $text_dark_grey;
+          margin-top: 1.5em;
+          margin-bottom: 0.5em;
+        }
+        > h1 { margin-top: 8px; }
+      }
+    }
+    .demos-container code, .attrs-table code {
+      display: inline-block;
+      font-family: Consolas,monospace,serif;
+      font-size: 90%;
+      line-height: 1.2em;
+      padding: 2px 4px;
+      margin: 0 4px;
+      border-radius: 3px;
+      background-color: #f2f4f5;
+      transform: translateY(-1px);
     }
     .demos-container {
       display: flex;
       flex-wrap: wrap;
-      .demo-wrapper {
-        width: 50%;
+      .demos-col {
+        width: 48%;
         min-width: 300px;
-        padding: 0 8px;
+        display: flex;
+        flex-direction: column;
+        &:first-child { margin-right: 8px; }
+      }
+      .demo-box + .demo-box {
+        margin-top: 8px;
       }
       .demo-box {
         width: 100%;
-        margin: 0 0 16px -8px;
-        padding: 20px;
         box-sizing: border-box;
         border: 1px solid $border_grey;
         border-radius: 2px;
         display: flex;
         flex-direction: column;
-        pre {
-          white-space: pre-wrap;
+        > .demo-demo { padding: 28px 24px; }
+        > .demo-intro {
+          border-top: 1px solid $border_grey;
+          > h4 {
+            display: inline-block;
+            margin-left: 16px;
+            padding: 0 8px;
+            transform: translateY(-50%);
+            background-color: white;
+          }
+          > .intro-content {
+            padding: 0 24px;
+            margin-bottom: 16px;
+            li {
+              &::before {
+                content: '-';
+                display: inline;
+                margin-left: 2px;
+                margin-right: 5px;
+              }
+            }
+          }
         }
+        > .demo-buttons {
+          padding: 14px 24px;
+          border-top: 1px $border_grey dashed;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        > .demo-code {
+          pre {
+          border-top: 1px $border_grey dashed;
+            white-space: pre-wrap;
+            margin: 0;
+            padding: 24px;
+            background-color: white;
+          }
+        }
+      }
+    }
+    .attrs-table {
+      width: 100%;
+      border-top: 1px solid $border_grey;
+      > thead th, >tbody td { padding: 10px 12px; }
+      > thead {
+        text-align: left;
+        border-bottom: 2px solid $border_grey;
+        background-color: $grey_background;
+        white-space: nowrap;
+      }
+      > tbody {
+        tr + tr { border-bottom: 1px solid $border_grey; }
       }
     }
   }

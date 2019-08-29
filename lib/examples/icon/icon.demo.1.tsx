@@ -4,11 +4,8 @@ import {Icon} from '../../index';
 const IconDemo1: React.FunctionComponent = () => {
   return (
     <div>
-      <Icon name="emoji-happy"/>
-      <Icon name="emoji-cool"/>
-      <Icon name="emoji-angry"/>
-      <Icon name="emoji-sad"/>
-      <Icon name="emoji-shocked"/>
+      <Icon fill="#f73a76" name="thumb-up"/>
+      <Icon style={{fontSize: '2em'}} name="emoji-cool"/>
     </div>
   );
 };

@@ -22,16 +22,16 @@ ReactDOM.render(
           <p className="menu-title">组件</p>
           <ul className="sub-menu">
             <li className="menu-item">
-              <NavLink to="/icon">Icon</NavLink>
+              <NavLink to="/icon">Icon 图标</NavLink>
             </li>
             <li className="menu-item">
-              <NavLink to="/dialog">Dialog</NavLink>
+              <NavLink to="/dialog">Dialog 对话框</NavLink>
             </li>
             <li className="menu-item">
-              <NavLink to="/layout">Layout</NavLink>
+              <NavLink to="/layout">Layout 布局</NavLink>
             </li>
             <li className="menu-item">
-              <NavLink to="/form">Form</NavLink>
+              <NavLink to="/form">Form 表单</NavLink>
             </li>
           </ul>
         </Aside>

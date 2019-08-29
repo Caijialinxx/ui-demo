@@ -1,23 +1,45 @@
-@import "../global.scss";
+$primary: #2f9cd9;
+$primary_hover_background: #e0f2ff;
+$dark_primary: #1b89d1;
+$text_grey: #999999;
+$text_dark_grey: #333333;
+$border_grey: #eaeaea;
+$grey_background: #f2f4f5;
 
-.demo-box {
-  width: 500px;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  > h3 { margin: 0; }
-  .cui-layout {
-    text-align: center;
-    color: white;
-    .demo-inner {
-      color: white;
-      &.cui-layout-header, &.cui-layout-footer { background-color: $light_primary; }
-      &.cui-layout-content { background-color: $dark_primary; min-height: 120px; line-height: 120px; }
-      &.cui-layout-aside { min-width: 100px; background-color: $primary; min-height: 120px; line-height: 120px; }
+.markdown {
+  &.doc-icon {
+    .icons-list {
+      display: flex;
+      flex-wrap: wrap;
+      > li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 8.2em;
+        height: 7em;
+        border-radius: 8px;
+        font-family: 'PingFang SC',sans-serif;
+        color: $text_dark_grey;
+        cursor: pointer;
+        transition: all 0.15s;
+        &:hover {
+          background-color: $grey_background;
+          color: $dark_primary;
+          font-weight: 500;
+          transition: all 0.15s;
+          .cui-icon {
+            transition: all 0.15s;
+            transform: scale(1.2);
+            fill: $dark_primary;
+          }
+        }
+        .cui-icon {
+          font-size: 2em;
+          margin: 8px 0;
+        }
+      }
     }
+    .demos-container .cui-icon { font-size: 1.5em; }
   }
-}
-.cui-form {
-  margin: 20px 0;
 }
