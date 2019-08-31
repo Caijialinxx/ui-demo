@@ -7,6 +7,8 @@ interface IconProps extends React.SVGAttributes<SVGSVGElement | SVGUseElement> {
   name: string;
   animationType?: 'spin' | 'shake' | 'shake-horizontal' | 'shake-vertical';
   animationTrigger?: 'click' | 'hover' | 'auto';
+  // TODO: 从 iconfont.cn 引入 icon
+  // TODO: 自定义 IconComponent
 }
 
 const Icon: React.FunctionComponent<IconProps> = ({name, className, animationType, animationTrigger, ...restProps}) => {
@@ -36,7 +38,7 @@ const Icon: React.FunctionComponent<IconProps> = ({name, className, animationTyp
     }
   }, []);
   return (
-    <svg className={joinClasses('cui-icon', className,
+    <svg fill="currentColor" className={joinClasses('cui-icon', className,
       name === 'loading' && 'cui-icon-spin',
       animationClassName
     )} {...animationEventHandler} {...restProps}>

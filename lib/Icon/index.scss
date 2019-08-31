@@ -1,6 +1,9 @@
 .cui-icon {
   width: 1em;
   height: 1em;
+  color: inherit;
+  fill: currentColor;
+  vertical-align: -0.14em;
   &-spin { animation: iconSpin 1s infinite linear; }
   @keyframes iconSpin {
     from { transform: rotate(0); }
