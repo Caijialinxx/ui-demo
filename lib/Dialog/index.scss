@@ -1,5 +1,8 @@
 @import '../global.scss';
 
+$horizontal-padding: 24px;
+$vertical-padding: 20px;
+
 .cui-dialog {
   position: fixed;
   width: 440px;
@@ -13,8 +16,8 @@
     align-items: center;
     font-size: 1.2em;
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: $vertical-padding;
+    right: $vertical-padding;
     cursor: pointer;
     outline: none;
     border: none;
@@ -32,13 +35,13 @@
   &-header {
     font-size: 1.2em;
     font-weight: 500;
-    padding: 14px 18px 6px;
+    padding: $vertical-padding $horizontal-padding 2px;
   }
   &-body {
-    padding: 18px;
+    padding: 24px $horizontal-padding;
   }
   &-footer {
-    padding: 4px 18px 14px;
+    padding: 2px $horizontal-padding $vertical-padding;
     text-align: right;
     button + button {
       margin-left: 8px;

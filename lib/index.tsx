@@ -2,7 +2,6 @@ import './index.scss';
 import Icon from './Icon';
 import Button from './Button';
 import Dialog from './Dialog';
-import {alert, confirm} from './Dialog';
 import Layout from './Layout';
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
@@ -15,8 +14,6 @@ export {
   Icon,
   Button,
   Dialog,
-  alert,
-  confirm,
   Layout,
   Header,
   Footer,

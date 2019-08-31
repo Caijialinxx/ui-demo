@@ -1,35 +1,39 @@
 import React from 'react';
-import IconDemo1 from './icon/icon.demo.1';
-import IconDemo2 from './icon/icon.demo.2';
-import {Icon} from '../index';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from './common';
+import IconDemo1 from './icon.demo.1';
+import IconDemo2 from './icon.demo.2';
+import {Icon} from '../../index';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
 
 const IconExample: React.FunctionComponent = () => {
-  const demos: DemoProps[] = [{
-    code: require('!!raw-loader!./icon/icon.demo.1.tsx').default,
-    demo: <IconDemo1/>,
-    title: '基本用法',
-    intro: `使用\`<Icon />\`标签声明组件，指定图标对应的\`name\`属性。可以通过\`fill\`属性来改变图标的颜色，也可以通过\`style\`属性来添加 CSS 样式。`
-  }, {
-    code: require('!!raw-loader!./icon/icon.demo.2.tsx').default,
-    demo: <IconDemo2/>,
-    title: '添加动画',
-    intro: `可以通过设置\`animationType\`属性为图标添加动画。当\`animationType="spin"\`时，图标会持续旋转。\`animationTrigger\`属性用来设置动画的触发方式，默认为\`auto\`自动触发。`
-  }];
-  const attrs: AttrProps[] = [{
-    name: 'name',
-    intro: '图标名称，遵循图标的命名规范',
-    type: 'string'
-  }, {
-    name: 'animationType',
-    intro: '动画类型，在其值为 "spin" 时动画持续播放',
-    type: '"spin" | "shake" | "shake-horizontal" | "shake-vertical"'
-  }, {
-    name: 'animationTrigger',
-    intro: `动画触发的方式，在定义了\`animationType\`才生效`,
-    type: '"click" | "hover" | "auto"',
-    default: '"auto"'
-  }, ];
+  const demos: DemoProps[] = [
+    {
+      code: require('!!raw-loader!./icon.demo.1.tsx').default,
+      demo: <IconDemo1/>,
+      title: '基本用法',
+      intro: `使用\`<Icon />\`标签声明组件，指定图标对应的\`name\`属性。可以通过\`fill\`属性来改变图标的颜色，也可以通过\`style\`属性来添加 CSS 样式。`
+    }, {
+      code: require('!!raw-loader!./icon.demo.2.tsx').default,
+      demo: <IconDemo2/>,
+      title: '添加动画',
+      intro: `可以通过设置\`animationType\`属性为图标添加动画。当\`animationType="spin"\`时，图标会持续旋转。\`animationTrigger\`属性用来设置动画的触发方式，默认为\`auto\`自动触发。`
+    }
+  ];
+  const attrs: AttrProps[] = [
+    {
+      name: 'name',
+      intro: '图标名称，遵循图标的命名规范',
+      type: 'string'
+    }, {
+      name: 'animationType',
+      intro: '动画类型，在其值为 "spin" 时动画持续播放',
+      type: '"spin" | "shake" | "shake-horizontal" | "shake-vertical"'
+    }, {
+      name: 'animationTrigger',
+      intro: `动画触发的方式，在定义了\`animationType\`才生效`,
+      type: '"click" | "hover" | "auto"',
+      default: '"auto"'
+    }
+  ];
   return (
     <section className="markdown doc-icon">
       <h1>Icon 图标</h1>
@@ -37,6 +41,7 @@ const IconExample: React.FunctionComponent = () => {
       <div>
         <h3>网站常用图标</h3>
         <ul className="icons-list">
+          {/* TODO: 添加 click 事件监听，点击图标时复制代码到剪切板 */}
           <li><Icon name="add"/>add</li>
           <li><Icon name="minus"/>minus</li>
           <li><Icon name="close"/>close</li>

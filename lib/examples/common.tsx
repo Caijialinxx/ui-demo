@@ -9,6 +9,8 @@ export interface DemoProps {
   code: string;
 }
 
+const createMarkdown = (source: string): ReactNode => <ReactMarkdown source={source} className="rmd"/>;
+
 const Demo: React.FunctionComponent<DemoProps> = (props) => {
   const [showCode, setShowCode] = useState(false);
   const code = (
@@ -32,9 +34,10 @@ const Demo: React.FunctionComponent<DemoProps> = (props) => {
       </div>
       <div className="demo-intro">
         <h4>{props.title}</h4>
-        <ReactMarkdown source={props.intro} className="intro-content"/>
+        {createMarkdown(props.intro)}
       </div>
       <div className="demo-buttons">
+        {/* TODO: 更换按钮「copy」和「code」 */}
         <button onClick={() => setShowCode(!showCode)}>Code</button>
       </div>
       <div className="demo-code">
@@ -69,7 +72,7 @@ const createAttrTable = (attributes: AttrProps[]): ReactNode => {
   const createAttrRows = (attrs: AttrProps[]): ReactNode[] => attrs.map((attr, index) =>
     <tr key={index}>{createAttrCols(attr)}</tr>);
   const createAttrCols = (attr: AttrProps): ReactNode[] => Object.values(attr).map((val, index) =>
-    <td key={index}><ReactMarkdown source={val} className="intro-content"/></td>);
+    <td key={index}>{createMarkdown(val)}</td>);
   return (
     <table className="attrs-table">
       <thead>
@@ -156,4 +159,4 @@ const theme /*: PrismTheme */ = {
   ]
 };
 
-export {createDemoColumns, createAttrTable};
+export {createMarkdown, createDemoColumns, createAttrTable};

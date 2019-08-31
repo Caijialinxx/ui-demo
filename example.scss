@@ -82,7 +82,7 @@ $grey_background: #f2f4f5;
         > h1 { margin-top: 8px; }
       }
     }
-    .demos-container code, .attrs-table code {
+    .rmd code {
       display: inline-block;
       font-family: Consolas,monospace,serif;
       font-size: 90%;
@@ -103,11 +103,9 @@ $grey_background: #f2f4f5;
         flex-direction: column;
         &:first-child { margin-right: 8px; }
       }
-      .demo-box + .demo-box {
-        margin-top: 8px;
-      }
       .demo-box {
         width: 100%;
+        margin-bottom: 8px;
         box-sizing: border-box;
         border: 1px solid $border_grey;
         border-radius: 2px;
@@ -116,24 +114,13 @@ $grey_background: #f2f4f5;
         > .demo-demo { padding: 28px 24px; }
         > .demo-intro {
           border-top: 1px solid $border_grey;
+          padding: 0 24px;
+          margin-bottom: 20px;
           > h4 {
             display: inline-block;
-            margin-left: 16px;
             padding: 0 8px;
             transform: translateY(-50%);
             background-color: white;
-          }
-          > .intro-content {
-            padding: 0 24px;
-            margin-bottom: 16px;
-            li {
-              &::before {
-                content: '-';
-                display: inline;
-                margin-left: 2px;
-                margin-right: 5px;
-              }
-            }
           }
         }
         > .demo-buttons {

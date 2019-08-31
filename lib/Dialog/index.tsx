@@ -15,10 +15,17 @@ interface DialogProps {
   closeable?: boolean;
 }
 
+interface DialogApis {
+  alert(contentOrProps: DialogAlertProps, title?: string): void;
+  confirm(props: DialogFuncProps): void;
+}
+
+type Dialog = React.FunctionComponent<DialogProps> & DialogApis
+
 const setClassName = scopeClassMaker('cui-dialog');
 const setCN = setClassName;
 
-const Dialog: React.FunctionComponent<DialogProps> = (props) => {
+const Dialog: Dialog = (props) => {
   const dialogComponent = (
     props.visible ?
       <Fragment>
@@ -57,49 +64,26 @@ Dialog.defaultProps = {
 };
 
 interface DialogFuncProps {
-  content: string;
+  content: ReactNode;
   title?: string;
   onOk?: (callback: () => void) => void;
   onCancel?: (callback: () => void) => void;
   confirmButtonText?: string;
   cancelButtonText?: string;
+  // TODO: confirmButtonProps & cancelButtonProps
 }
 
-const alert = (contentOrProps: string | DialogFuncProps, title?: string) => {
-  const _content = typeof contentOrProps === 'string' ? contentOrProps : contentOrProps.content;
-  const _title = typeof contentOrProps === 'string' ? title : contentOrProps.title;
-  const close = common({
-    title: _title,
-    content: _content,
-    footer: (<Button className={setCN('button__confirm')} autoFocus={true}
-                     onClick={() => {
-                       typeof contentOrProps === 'object' && contentOrProps.onOk ? contentOrProps.onOk(close) : close();
-                     }}>
-      {typeof contentOrProps === 'object' && contentOrProps.confirmButtonText ? contentOrProps.confirmButtonText : '知道了'}
-    </Button>),
-  });
-};
+type DialogAlertProps = string | DialogFuncProps
 
-const confirm = (props: DialogFuncProps) => {
-  const close = common({
-    footer: (
-      <Fragment>
-        <Button onClick={() => {
-          props.onCancel ? props.onCancel(close) : close();
-        }}>
-          {props.cancelButtonText ? props.cancelButtonText : '取消'}
-        </Button>
-        <Button onClick={() => {
-          props.onOk ? props.onOk(close) : close();
-        }} className={setCN('button__confirm')}>
-          {props.confirmButtonText ? props.confirmButtonText : '确定'}
-        </Button>
-      </Fragment>),
-    ...props
-  });
-};
+Dialog.alert = (contentOrProps: DialogAlertProps, title?: string) => createDialog('alert', Object.assign({}, contentOrProps, {
+  //重新赋值props
+  content: typeof contentOrProps === 'string' ? contentOrProps : contentOrProps.content,
+  title: typeof contentOrProps === 'string' ? title : contentOrProps.title
+}));
 
-const common = (dialogProps: any) => {
+Dialog.confirm = (props: DialogFuncProps) => createDialog('confirm', props);
+
+const createDialog = (type: string, props: DialogFuncProps) => {
   const div = document.createElement('div');
   document.body.appendChild(div);
 
@@ -109,16 +93,32 @@ const common = (dialogProps: any) => {
     div.remove();
   };
 
+  const confirmButton = (
+    <Button
+      autoFocus={true}
+      className={setCN('button__confirm')}
+      onClick={() => {props.onOk ? props.onOk(onClose) : onClose();}}
+    >
+      {props.confirmButtonText ? props.confirmButtonText : '确定'}
+    </Button>);
+  const footer = type === 'confirm' ?
+    (<Fragment>
+        <Button onClick={() => {
+          props.onCancel ? props.onCancel(onClose) : onClose();
+        }}>
+          {props.cancelButtonText ? props.cancelButtonText : '取消'}
+        </Button>
+        {confirmButton}
+      </Fragment>
+    ) : confirmButton;
+
   const component = (
-    <Dialog visible={true} title={dialogProps.title} closeable={false} maskCloseable={false}
-            footer={dialogProps.footer}>
-      {dialogProps.content}
+    <Dialog visible={true} title={props.title} closeable={false} maskCloseable={false}
+            footer={footer}>
+      {props.content}
     </Dialog>
   );
   ReactDOM.render(component, div);
-  return onClose;
 };
-
-export {alert, confirm};
 
 export default Dialog;
