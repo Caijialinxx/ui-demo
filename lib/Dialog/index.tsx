@@ -7,8 +7,8 @@ import {scopeClassMaker} from '../helpers';
 
 interface DialogProps {
   visible?: boolean;
-  onOk?: () => void;
-  onCancel?: () => void;
+  onOk?: (e: React.MouseEvent<any>) => void;
+  onCancel?: (e: React.MouseEvent<any>) => void;
   title?: string | ReactNode;
   footer?: null | ReactNode;
   maskCloseable?: boolean;
@@ -29,7 +29,8 @@ const Dialog: Dialog = (props) => {
   const dialogComponent = (
     props.visible ?
       <Fragment>
-        <div className={setCN('mask')} onClick={() => props.maskCloseable ? props.onCancel && props.onCancel() : null}/>
+        <div className={setCN('mask')}
+             onClick={(e) => props.maskCloseable ? props.onCancel && props.onCancel(e) : null}/>
         <div className={setCN('')}>
           {props.closeable ?
             <button onClick={props.onCancel} className={setCN('close')}><Icon name="close"/></button> : null}
@@ -87,7 +88,7 @@ const createDialog = (type: string, props: DialogFuncProps) => {
   const div = document.createElement('div');
   document.body.appendChild(div);
 
-  const onClose = () => {
+  const removeDialog = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     ReactDOM.unmountComponentAtNode(div);
     div.remove();
@@ -97,14 +98,14 @@ const createDialog = (type: string, props: DialogFuncProps) => {
     <Button
       autoFocus={true}
       className={setCN('button__confirm')}
-      onClick={() => {props.onOk ? props.onOk(onClose) : onClose();}}
+      onClick={() => {props.onOk ? props.onOk(removeDialog) : removeDialog();}}
     >
       {props.confirmButtonText ? props.confirmButtonText : '确定'}
     </Button>);
   const footer = type === 'confirm' ?
     (<Fragment>
         <Button onClick={() => {
-          props.onCancel ? props.onCancel(onClose) : onClose();
+          props.onCancel ? props.onCancel(removeDialog) : removeDialog();
         }}>
           {props.cancelButtonText ? props.cancelButtonText : '取消'}
         </Button>

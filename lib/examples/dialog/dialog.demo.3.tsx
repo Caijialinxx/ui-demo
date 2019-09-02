@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {Button, Dialog} from '../../index';
 
 const DialogDemo3: React.FunctionComponent = () => {
   return (
-    <Fragment>
+    <div>
       <Button
         onClick={() => {
           Dialog.alert('这是一条警告', '简单的 Alert 调用')
@@ -17,6 +17,7 @@ const DialogDemo3: React.FunctionComponent = () => {
           Dialog.alert({
             content: '这是一条警告',
             title: '更多选项的 Alert 调用',
+            confirmButtonText: '知道了',
             onOk: (close) => {
               console.log('您点击了「知道了」');
               close();
@@ -31,21 +32,17 @@ const DialogDemo3: React.FunctionComponent = () => {
         onClick={() => {
           Dialog.confirm({
             content: '这是一个确认框',
-            title: 'Confirm',
+            title: '简单的 Confirm 调用',
             onOk: (close) => {
               console.log('您点击了「确定」');
-              close();
-            },
-            onCancel: (close) => {
-              console.log('您点击了「取消」');
               close();
             }
           });
         }}
       >
-        Confirm
+        简单的 Confirm 调用
       </Button>
-    </Fragment>
+    </div>
   );
 };
 

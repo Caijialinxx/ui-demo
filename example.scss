@@ -82,16 +82,23 @@ $grey_background: #f2f4f5;
         > h1 { margin-top: 8px; }
       }
     }
-    .rmd code {
-      display: inline-block;
-      font-family: Consolas,monospace,serif;
-      font-size: 90%;
-      line-height: 1.2em;
-      padding: 2px 4px;
-      margin: 0 4px;
-      border-radius: 3px;
-      background-color: #f2f4f5;
-      transform: translateY(-1px);
+    .rmd {
+      p, li { line-height: 1.8em; }
+      &.rmd2 {
+        p { margin: 8px 0; }
+        li { list-style: circle; margin-left: 22px; }
+      }
+      code {
+        display: inline-block;
+        font-family: Consolas,monospace,serif;
+        font-size: 90%;
+        line-height: 1.2em;
+        padding: 2px 4px;
+        margin: 0 4px;
+        border-radius: 3px;
+        background-color: #f2f4f5;
+        transform: translateY(-1px);
+      }
     }
     .demos-container {
       display: flex;
@@ -143,16 +150,16 @@ $grey_background: #f2f4f5;
     }
     .attrs-table {
       width: 100%;
-      border-top: 1px solid $border_grey;
+      border: 1px solid $border_grey;
       > thead th, >tbody td { padding: 10px 12px; }
       > thead {
         text-align: left;
-        border-bottom: 2px solid $border_grey;
+        //border-bottom: 2px solid $border_grey;
         background-color: $grey_background;
         white-space: nowrap;
       }
       > tbody {
-        tr + tr { border-bottom: 1px solid $border_grey; }
+        //tr + tr { border-bottom: 1px solid $border_grey; }
       }
     }
   }

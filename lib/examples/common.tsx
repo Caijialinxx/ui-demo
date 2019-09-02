@@ -9,7 +9,11 @@ export interface DemoProps {
   code: string;
 }
 
-const createMarkdown = (source: string): ReactNode => <ReactMarkdown source={source} className="rmd"/>;
+const createMarkdown = (source: string, className?: string): ReactNode =>
+  <ReactMarkdown
+    source={source}
+    className={['rmd', className].filter(Boolean).join(' ')}
+  />;
 
 const Demo: React.FunctionComponent<DemoProps> = (props) => {
   const [showCode, setShowCode] = useState(false);
