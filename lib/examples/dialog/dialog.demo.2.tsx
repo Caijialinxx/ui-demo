@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Dialog, Icon} from '../../index';
+import {Button, Dialog} from '../../index';
 
 const DialogDemo2: React.FunctionComponent = () => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -10,6 +10,7 @@ const DialogDemo2: React.FunctionComponent = () => {
     setTimeout(() => {
       setLoading(false);
       setVisible(false);
+      setEmail('');
     }, 1000);
   };
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -23,9 +24,20 @@ const DialogDemo2: React.FunctionComponent = () => {
         maskCloseable={false}
         visible={visible}
         footer={[
-          <Button onClick={() => setVisible(false)}>取消</Button>,
-          <Button onClick={handleOk}>
-            发送验证邮件{loading && <Icon name="loading"/>}
+          <Button
+            onClick={() => setVisible(false)}
+            key="cancel"
+          >
+            取消
+          </Button>,
+          <Button
+            theme="primary"
+            onClick={handleOk}
+            disabled={!email}
+            loading={loading}
+            key="send"
+          >
+            发送验证邮件
           </Button>
         ]}>
         <div>

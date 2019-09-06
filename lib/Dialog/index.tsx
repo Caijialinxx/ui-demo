@@ -1,14 +1,13 @@
 import React, {Fragment, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import Icon from '../Icon';
-import Button from '../Button';
+import {Icon, Button} from '../index';
 import {scopeClassMaker} from '../helpers';
 
 interface DialogProps {
   visible?: boolean;
-  onOk?: (e: React.MouseEvent<any>) => void;
-  onCancel?: (e: React.MouseEvent<any>) => void;
+  onOk?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onCancel?: (e: React.MouseEvent<HTMLElement>) => void;
   title?: string | ReactNode;
   footer?: null | ReactNode;
   maskCloseable?: boolean;
@@ -47,7 +46,7 @@ const Dialog: Dialog = (props) => {
                   !!props.footer ? props.footer :
                     <Fragment>
                       <Button onClick={props.onCancel}>取消</Button>
-                      <Button className={setCN('button__confirm')} onClick={props.onOk}>确定</Button>
+                      <Button theme="primary" onClick={props.onOk}>确定</Button>
                     </Fragment>
                 }
               </footer>)
@@ -97,7 +96,7 @@ const createDialog = (type: string, props: DialogFuncProps) => {
   const confirmButton = (
     <Button
       autoFocus={true}
-      className={setCN('button__confirm')}
+      theme="primary"
       onClick={() => {props.onOk ? props.onOk(removeDialog) : removeDialog();}}
     >
       {props.confirmButtonText ? props.confirmButtonText : '确定'}

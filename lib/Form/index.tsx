@@ -118,7 +118,7 @@ const Form: React.FunctionComponent<FormProps> = (props) => {
           </div>
         );
       })}
-      <Button type="submit" className={setCN('button')}>提交</Button>
+      <Button theme="primary" className={setCN('button')}>提交</Button>
     </form>
   );
 };

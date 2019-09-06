@@ -43,17 +43,9 @@ $vertical-padding: 20px;
   &-footer {
     padding: 2px $horizontal-padding $vertical-padding;
     text-align: right;
-    button + button {
+    .cui-button + .cui-button {
       margin-left: 8px;
     }
-  }
-  &-button__confirm {
-    background-color: $primary;
-    color: white;
-    border: none;
-    transition: background-color 0.2s;
-    &:hover { background-color: $light_primary; }
-    &:active { background-color: $dark_primary; }
   }
   &-mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: fade_out(black, 0.4); }
 }

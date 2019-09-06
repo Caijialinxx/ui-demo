@@ -1,14 +1,262 @@
 @import '../global.scss';
 
+$default-size: 32px;
+$large-size: 40px;
+$small-size: 24px;
+$default-padding: 12px;
+$large-padding: 18px;
+$small-padding: 6px;
+
 .cui-button {
   outline: none;
   box-shadow: none;
   border: 1px solid $grey;
   border-radius: 4px;
-  padding: 6px 10px;
+  padding: 0 12px;
   font-size: 14px;
-  min-height: 32px;
+  line-height: 1;
+  min-width: 5em;
+  height: $default-size;
   display: inline-block;
   background-color: transparent;
   cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all 0.15s;
+  &:hover { border-color: $primary; color: $primary; }
+  &:active { border-color: desaturate($primary, 12%); color: desaturate($primary, 12%); }
+
+  &-primary {
+    border: none;
+    color: white;
+    background-color: $primary;
+    transition: background-color 0.2s;
+    &:hover { color: white; background-color: rgba($primary, 0.85); }
+    &:active { color: white; background-color: desaturate($primary, 12%); }
+  }
+
+  &-success {
+    background-color: $success;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+    &:hover { color: white; background-color: rgba($success, 0.85); }
+    &:active { color: white; background-color: desaturate($success, 12%); }
+  }
+
+  &-info {
+    background-color: $info;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+    &:hover { color: white; background-color: rgba($info, 0.85); }
+    &:active { color: white; background-color: desaturate($info, 12%); }
+  }
+
+  &-warning {
+    background-color: $warning;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+    &:hover { color: white; background-color: rgba($warning, 0.85); }
+    &:active { color: white; background-color: desaturate($warning, 12%); }
+  }
+
+  &-danger {
+    background-color: $error;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+    &:hover { color: white; background-color: rgba($error, 0.85); }
+    &:active { color: white; background-color: desaturate($error, 12%); }
+  }
+
+  &-plain {
+    color: white;
+    background-color: transparent;
+    //&:hover { background-color: transparent; }
+    &.cui-button-primary {
+      border: 1px solid $primary;
+      color: $primary;
+      &:hover {
+        background-color: rgba($primary, 0.15);
+        border-color: lighten($primary, 10%);
+        color: lighten($primary, 10%)
+      }
+    }
+    &.cui-button-success {
+      border: 1px solid $success;
+      color: $success;
+      &:hover {
+        background-color: rgba($success, 0.15);
+        border-color: lighten($success, 10%);
+        color: lighten($success, 5%)
+      }
+    }
+    &.cui-button-info {
+      border: 1px solid $info;
+      color: $info;
+      &:hover {
+        background-color: rgba($info, 0.15);
+        border-color: lighten($info, 10%);
+        color: lighten($info, 5%)
+      }
+    }
+    &.cui-button-warning {
+      border: 1px solid $warning;
+      color: $warning;
+      &:hover {
+        background-color: rgba($warning, 0.15);
+        border-color: lighten($warning, 10%);
+        color: lighten($warning, 10%)}
+    }
+    &.cui-button-danger {
+      border: 1px solid $error;
+      color: $error;
+      &:hover {
+        background-color: rgba($error, 0.15);
+        border-color: lighten($error, 10%);
+        color: lighten($error, 10%)}
+    }
+  }
+
+  &-text {
+    min-width: 0;
+    border: none;
+    background-color: transparent;
+    &.cui-button-primary { color: $primary; }
+    &.cui-button-success { color: $success; }
+    &.cui-button-info { color: $info; }
+    &.cui-button-warning { color: $warning; }
+    &.cui-button-danger { color: $error; }
+    &:hover { background-color: transparent;
+      &.cui-button-primary { color: lighten($primary, 10); }
+      &.cui-button-success { color: lighten($success, 5); }
+      &.cui-button-info { color: lighten($info, 10); }
+      &.cui-button-warning { color: lighten($warning, 10); }
+      &.cui-button-danger { color: lighten($error, 10); }
+    }
+    &:active { background-color: transparent;
+      &.cui-button-primary { color: desaturate($primary, 12%); }
+      &.cui-button-success { color: desaturate($success, 12%); }
+      &.cui-button-info { color: desaturate($info, 12%); }
+      &.cui-button-warning { color: desaturate($warning, 12%); }
+      &.cui-button-danger { color: desaturate($error, 12%); }
+    }
+  }
+
+  &-large {
+    font-size: 1.2em;
+    padding: 0 $large-padding;
+    height: $large-size;
+    &.cui-button-round { border-radius: $large-size / 2; padding: 0 $large-padding; }
+    &.cui-button-circle { min-width: $large-size; }
+    &.cui-button-icon-only { min-width: $large-size; height: $large-size; }
+  }
+  &-small {
+    min-width: 0;
+    padding: 0 $small-padding;
+    height: $small-size;
+    &.cui-button-round { border-radius: $small-size / 2; padding: 0 $small-padding; }
+    &.cui-button-circle { min-width: $small-size; }
+    &.cui-button-icon-only { min-width: $small-size; height: $small-size; }
+  }
+
+  &-circle { border-radius: 50%; min-width: $default-size; padding: 4px; }
+  &-icon-only { min-width: $default-size; height: $default-size; padding: 0; }
+  &-round { border-radius: $default-size / 2; padding: 0 $default-padding; }
+
+  &-loading {
+    position: relative;
+    pointer-events: none;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      top: -1px;
+      bottom: -1px;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    &.cui-button {
+      color: rgba($text_color, 0.25);
+      border: 1px solid rgba($grey, 0.6);
+      background-color: rgba($grey, 0.25);
+    }
+    &.cui-button-primary, &.cui-button-primary:hover, &.cui-button-primary:active {
+      &:not(.cui-button-plain, .cui-button-text) {
+        color: rgba(white, 0.85);
+        border: none;
+        background-color: desaturate(lighten($primary, 25%), 18%);
+      }
+      &.cui-button-plain {
+        color: desaturate(lighten($primary, 25%), 18%);
+        border: 1px solid desaturate(lighten($primary, 25%), 18%);
+        background-color: transparent;
+      }
+    }
+    &.cui-button-success, &.cui-button-success:hover, &.cui-button-success:active {
+      &:not(.cui-button-plain, .cui-button-text) {
+        color: rgba(white, 0.85);
+        border: none;
+        background-color: desaturate(lighten($success, 25%), 18%);
+      }
+      &.cui-button-plain {
+        color: desaturate(lighten($success, 25%), 18%);
+        border: 1px solid desaturate(lighten($success, 25%), 18%);
+        background-color: transparent;
+      }
+    }
+    &.cui-button-info, &.cui-button-info:hover, &.cui-button-info:active {
+      &:not(.cui-button-plain, .cui-button-text) {
+        color: rgba(white, 0.85);
+        border: none;
+        background-color: desaturate(lighten($info, 25%), 18%);
+      }
+      &.cui-button-plain {
+        color: desaturate(lighten($info, 25%), 18%);
+        border: 1px solid desaturate(lighten($info, 25%), 18%);
+        background-color: transparent;
+      }
+    }
+    &.cui-button-warning, &.cui-button-warning:hover, &.cui-button-warning:active {
+      &:not(.cui-button-plain, .cui-button-text) {
+        color: rgba(white, 0.85);
+        border: none;
+        background-color: desaturate(lighten($warning, 25%), 18%);
+      }
+      &.cui-button-plain {
+        color: desaturate(lighten($warning, 25%), 18%);
+        border: 1px solid desaturate(lighten($warning, 25%), 18%);
+        background-color: transparent;
+      }
+    }
+    &.cui-button-danger, &.cui-button-danger:hover, &.cui-button-danger:active {
+      &:not(.cui-button-plain, .cui-button-text) {
+        color: rgba(white, 0.85);
+        border: none;
+        background-color: desaturate(lighten($error, 25%), 18%);
+      }
+      &.cui-button-plain {
+        color: desaturate(lighten($error, 25%), 18%);
+        border: 1px solid desaturate(lighten($error, 25%), 18%);
+        background-color: transparent;
+      }
+    }
+    &.cui-button-text, &.cui-button-text:hover, &.cui-button-text:active {
+      color: rgba($text_color, 0.25);
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  > .cui-icon + span { margin-left: 4px; }
 }

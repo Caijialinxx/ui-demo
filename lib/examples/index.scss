@@ -19,7 +19,7 @@ $grey_background: #f2f4f5;
         width: 8.2em;
         height: 7em;
         border-radius: 8px;
-        font-family: 'PingFang SC',sans-serif;
+        font-family: 'PingFang SC', sans-serif;
         color: $text_dark_grey;
         cursor: pointer;
         transition: all 0.15s;
@@ -41,5 +41,15 @@ $grey_background: #f2f4f5;
       }
     }
     .demos-container .cui-icon { font-size: 1.5em; }
+  }
+  &.doc-button {
+    [class^=button-demo-] {
+      li + li { margin-top: 8px; }
+      .cui-button + .cui-button { margin-left: 8px; }
+    }
+    .button-demo-3 {
+      padding: 10px;
+      background-color: #333333;
+    }
   }
 }

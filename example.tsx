@@ -25,6 +25,9 @@ ReactDOM.render(
               <NavLink to="/icon">Icon 图标</NavLink>
             </li>
             <li className="menu-item">
+              <NavLink to="/button">Button 按钮</NavLink>
+            </li>
+            <li className="menu-item">
               <NavLink to="/dialog">Dialog 对话框</NavLink>
             </li>
             <li className="menu-item">
@@ -38,6 +41,7 @@ ReactDOM.render(
         <Layout className="main-content-wrapper">
           <Content className="main-content">
             <Route path="/icon" component={Example.Icon}/>
+            <Route path="/button" component={Example.Button}/>
             <Route path="/dialog" component={Example.Dialog}/>
             <Route path="/layout" component={Example.Layout}/>
             <Route path="/form" component={Example.Form}/>
