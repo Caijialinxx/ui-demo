@@ -52,4 +52,10 @@ $grey_background: #f2f4f5;
       background-color: #333333;
     }
   }
+  &.doc-input {
+    .cui-input + .cui-input { margin-top: 8px; }
+    .input-demo-4 {
+      .cui-input-number + .cui-input-number { margin-left: 8px; }
+    }
+  }
 }

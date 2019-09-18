@@ -5,6 +5,34 @@ import * as Example from './lib/examples';
 import {Aside, Content, Footer, Header, Layout} from './lib';
 import './example.scss';
 
+const ROUTERS = [
+  {
+    key: 'icon',
+    name: 'Icon 图标',
+    component: Example.Icon
+  }, {
+    key: 'button',
+    name: 'Button 按钮',
+    component: Example.Button
+  }, {
+    key: 'input',
+    name: 'Input 输入框',
+    component: Example.Input
+  }, {
+    key: 'dialog',
+    name: 'Dialog 对话框',
+    component: Example.Dialog
+  }, {
+    key: 'layout',
+    name: 'Layout 布局',
+    component: Example.Layout
+  }, {
+    key: 'form',
+    name: 'Form 表单',
+    component: Example.Form
+  }
+];
+
 ReactDOM.render(
   <Router>
     <Layout className="examples-doc">
@@ -21,30 +49,22 @@ ReactDOM.render(
         <Aside className="main-menu">
           <p className="menu-title">组件</p>
           <ul className="sub-menu">
-            <li className="menu-item">
-              <NavLink to="/icon">Icon 图标</NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink to="/button">Button 按钮</NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink to="/dialog">Dialog 对话框</NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink to="/layout">Layout 布局</NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink to="/form">Form 表单</NavLink>
-            </li>
+            {
+              ROUTERS.map(router => (
+                <li key={router.key} className="menu-item">
+                  <NavLink to={'/' + router.key}>{router.name}</NavLink>
+                </li>
+              ))
+            }
           </ul>
         </Aside>
         <Layout className="main-content-wrapper">
           <Content className="main-content">
-            <Route path="/icon" component={Example.Icon}/>
-            <Route path="/button" component={Example.Button}/>
-            <Route path="/dialog" component={Example.Dialog}/>
-            <Route path="/layout" component={Example.Layout}/>
-            <Route path="/form" component={Example.Form}/>
+            {
+              ROUTERS.map(router => (
+                <Route key={router.key} path={'/' + router.key} component={router.component}/>
+              ))
+            }
           </Content>
           <Footer className="footer">Made by Caijialinxx</Footer>
         </Layout>

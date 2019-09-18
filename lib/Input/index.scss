@@ -1,13 +1,42 @@
 @import '../global.scss';
 
+// 1-small, 2-default, 3-large
+$size: 18px, 22px, 26px;
+$horizontal-padding: 5px, 10px, 10px;
+$vertical-padding: 3px, 4px, 6px;
+$number-width: 40px, 60px, 80px;
+$number-inner-size: 24px, 30px, 38px;
+
 %input-common {
   outline: none;
-  line-height: 20px;
-  padding: 6px 8px;
+  line-height: nth($size, 2);
+  padding: nth($vertical-padding, 2) nth($horizontal-padding, 2);
   font-size: inherit;
   box-shadow: none;
   background-color: white;
   transition: all 0.15s;
+  &::placeholder { color: $dark_grey; }
+  &:disabled {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.25);
+    background-color: rgba($grey, 0.25);
+  }
+}
+
+%controller-common {
+  position: absolute;
+  color: $dark_grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  &:hover { color: $primary; }
+  &.disabled, &.disabled:hover {
+    cursor: not-allowed;
+    background-color: rgba($grey, 0.25);
+    color: rgba(0, 0, 0, 0.25);
+  }
 }
 
 .cui-input {
@@ -16,41 +45,104 @@
   cursor: text;
   border: 1px solid $grey;
   border-radius: 4px;
-  &::placeholder { color: $grey; }
-  &:disabled { cursor: not-allowed; background-color: $light_grey; }
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    border-color: $primary;
+  }
+  &-large {
+    line-height: nth($size, 3);
+    padding: nth($vertical-padding, 3) nth($horizontal-padding, 3);
+  }
+  &-small {
+    line-height: nth($size, 1);
+    padding: nth($vertical-padding, 1) nth($horizontal-padding, 1);
+  }
 }
 
 .cui-input-number {
-  width: 120px;
-  padding: 0 34px;
-  display: inline-flex;
-  line-height: normal;
+  display: inline-block;
   overflow: hidden;
   position: relative;
   border-radius: 4px;
   border: 1px solid $grey;
-  %controller-common {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 34px;
-    font-size: 1.2em;
-    color: $dark_grey;
-    background-color: lighten($light_grey, 2%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    transition: color 0.15s;
-  }
-  &__decrease { @extend %controller-common; border-right: 1px solid $grey; left: 0; }
-  &__increase { @extend %controller-common; border-left: 1px solid $grey; right: 0; }
+  vertical-align: middle; // 消除父元素多余的高度
+  &:hover:not(.cui-input-number-disabled) { border-color: $primary; }
 
   &__input {
     @extend %input-common;
-    width: 100%;
+    line-height: nth($number-inner-size, 2);
+    width: nth($number-width, 2);
     border: none;
-    text-align: center;
+  }
+
+  &.cui-input-number-horizontal {
+    padding: 0 nth($number-inner-size, 2);
+
+    .cui-input-number__input { text-align: center; padding: 0 5px; }
+
+    %h-controller-common {
+      @extend %controller-common;
+      top: 0;
+      bottom: 0;
+      width: nth($number-inner-size, 2);
+      background-color: rgba($light_grey, 0.4);
+      transition: color 0.15s;
+    }
+    .cui-input-number__decrease { @extend %h-controller-common; border-right: 1px solid $grey; left: 0; }
+    .cui-input-number__increase { @extend %h-controller-common; border-left: 1px solid $grey; right: 0; }
+
+    &.cui-input-number-large {
+      padding: 0 nth($number-inner-size, 3);
+      %h-controller-common { width: nth($number-inner-size, 3); }
+    }
+    &.cui-input-number-small {
+      padding: 0 nth($number-inner-size, 1);
+      %h-controller-common { width: nth($number-inner-size, 1); }
+    }
+  }
+
+  &.cui-input-number-vertical {
+
+    .cui-input-number__input { padding: 0 nth($horizontal-padding, 2); }
+    &.cui-input-number-large .cui-input-number__input { padding: 0 nth($horizontal-padding, 3); }
+    &.cui-input-number-small .cui-input-number__input { padding: 0 nth($horizontal-padding, 1); }
+
+    %v-controller-common {
+      @extend %controller-common;
+      opacity: 0;
+      right: 0;
+      width: 16px;
+      height: 50%;
+      font-size: 0.5em;
+      transition: color, opacity 0.15s;
+      border-left: 1px solid $grey;
+    }
+    .cui-input-number__increase {
+      @extend %v-controller-common;
+      top: 0;
+      border-bottom: 1px solid $grey;
+    }
+    .cui-input-number__decrease {
+      @extend %v-controller-common;
+      bottom: 0;
+    }
+
+    &:hover %v-controller-common { opacity: 1; }
+  }
+
+  &.cui-input-number-disabled {
+    [class^=cui-input-number], [class^=cui-input-number]:hover {
+      cursor: not-allowed;
+      color: rgba(0, 0, 0, 0.25);
+      background-color: rgba($grey, 0.25);
+    }
+  }
+
+  &-large {
+    .cui-input-number__input { width: nth($number-width, 3); line-height: nth($number-inner-size, 3); }
+    .cui-input-number__decrease, .cui-input-number__increase { width: nth($number-inner-size, 3); }
+  }
+  &-small {
+    .cui-input-number__input { width: nth($number-width, 1); line-height: nth($number-inner-size, 1); }
+    .cui-input-number__decrease, .cui-input-number__increase { width: nth($number-inner-size, 1); }
   }
 }
