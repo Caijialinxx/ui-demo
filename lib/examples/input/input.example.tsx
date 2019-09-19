@@ -2,8 +2,9 @@ import React from 'react';
 import InputDemo1 from './input.demo.1';
 import InputDemo2 from './input.demo.2';
 import InputDemo3 from './input.demo.3';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
 import InputDemo4 from './input.demo.4';
+import InputDemo5 from './input.demo.5';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
 
 const InputExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [
@@ -27,6 +28,11 @@ const InputExample: React.FunctionComponent = () => {
       demo: <InputDemo4/>,
       title: '数字输入框',
       intro: `调用数字输入框可以使用\`<Input.Number/>\`，也可以\`<InputNumber/>\`，两种方式是等价的。更详细的数字输入框介绍请参阅[InputNumber 数字输入框](#/input-number)。`
+    }, {
+      code: require('!!raw-loader!./input.demo.5.tsx').default,
+      demo: <InputDemo5/>,
+      title: '前缀和后缀图标',
+      intro: `可以为输入框上添加前缀或后缀。`
     },
   ];
   const attrs: AttrProps[] = [

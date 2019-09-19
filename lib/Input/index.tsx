@@ -20,15 +20,24 @@ interface InputApis {
 type Input = React.FunctionComponent<InputProps> & InputApis
 
 const Input: Input = ({className, width, size, prefix, suffix, type, ...restProps}) => {
-  // TODO: prefix & suffix
-  return (
-    <input
-      type={type}
-      style={{width}}
-      className={setCN('', className, size !== 'default' && `cui-input-${size}`)}
-      {...restProps}
-    />
-  );
+  return prefix || suffix ?
+    (
+      <span style={{width}} className={setCN('affix-wrapper', className)}>
+        {prefix && <span className={setCN('prefix')}>{prefix}</span>}
+        <input
+          type={type}
+          className={setCN('', size !== 'default' && `cui-input-${size}`)}
+          {...restProps}
+        />
+        {suffix && <span className={setCN('suffix')}>{suffix}</span>}
+      </span>) :
+    (
+      <input
+        type={type}
+        style={{width}}
+        className={setCN('', className, size !== 'default' && `cui-input-${size}`)}
+        {...restProps}
+      />);
 };
 
 Input.defaultProps = {

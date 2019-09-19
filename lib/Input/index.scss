@@ -56,6 +56,33 @@ $number-inner-size: 24px, 30px, 38px;
     line-height: nth($size, 1);
     padding: nth($vertical-padding, 1) nth($horizontal-padding, 1);
   }
+
+  &-affix-wrapper {
+    width: 100%;
+    border: 1px solid $grey;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0 nth($horizontal-padding, 2);
+    transition: all 0.15s;
+    &:hover { border-color: $primary; }
+    .cui-input {
+      flex: 1;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+      &-prefix, &-suffix {
+        flex-shrink: 0;
+        min-width: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &-prefix { padding-right: 6px;}
+      &-suffix { padding-left: 6px; }
+    }
+  }
 }
 
 .cui-input-number {
