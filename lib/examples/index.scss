@@ -58,4 +58,21 @@ $grey_background: #f2f4f5;
       .cui-input-number + .cui-input-number { margin-left: 8px; }
     }
   }
+  &.doc-input-number {
+    .input-number-demo-1, .input-number-demo-2, .input-number-demo-4 {
+      .cui-input-number + .cui-input-number { margin-left: 8px; }
+    }
+    .input-number-demo-3 {
+      display: flex;
+      flex-wrap: wrap;
+      .cui-input-number + .cui-input-number { margin-top: 8px; }
+      > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+    }
+  }
 }

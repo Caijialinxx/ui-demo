@@ -52,16 +52,17 @@ Input.TextArea = () => {
   );
 };
 
-interface InputNumberProps extends Omit<InputProps, 'defaultValue'> {
+interface InputNumberProps extends Omit<InputProps, 'defaultValue' | 'onChange'> {
   defaultValue?: number;
   step?: number;
   min?: number;
   max?: number;
   precision?: number;
-  controllerPosition?: 'vertical' | 'horizontal';
+  controls?: 'vertical' | 'horizontal' | null;
+  onChange?: (value: number | string) => void;
 }
 
-const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, width, size, controllerPosition, suffix, prefix, precision, step, min, max, onChange, defaultValue, disabled, ...restProps}) => {
+const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, width, size, controls, suffix, prefix, precision, step, min, max, onChange, defaultValue, disabled, ...restProps}) => {
   const _defaultVal = findNumber(defaultValue);
   const [_value, setValue] = useState<string>(precision === undefined ? _defaultVal : fixPrecision(_defaultVal, precision));
   const stepPrecision: number = (String(step!).split('.')[1] || '').length;
@@ -74,21 +75,23 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
       num2: number = Number(step! + 'e' + stepPrecision),
       result: number = isAdd ? (num1 + num2) / multiple : (num1 - num2) / multiple;
     setValue(fixPrecision(checkNumber(result, min!, max!), _precision));
-    if (result > max!) {
+    onChange && onChange(result);
+    if (result >= max!) {
       setDisabledBtn('add');
-    } else if (result < min!) {
+    } else if (result <= min!) {
       setDisabledBtn('minus');
     } else {
       setDisabledBtn('');
     }
   };
   const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const val: string = findNumber(e.target.value);
+    const val: string = findNumber(e.target.value), num: number = Number(val);
     if (precision === undefined) {
       // 若precision未设置，当用户更改inputValue时，则精度为step和inputValue间的最大精度
       setPrecision(Math.max((val.split('.')[1] || '').length, stepPrecision));
     }
     setValue(val);
+    onChange && onChange(val === String(num) ? num : val);
   };
   return (
     <div className={setCN(
@@ -96,9 +99,9 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
       className,
       size !== 'default' && `cui-input-number-${size}`,
       disabled && 'cui-input-number-disabled',
-      controllerPosition && `cui-input-number-${controllerPosition}`
+      !!controls && `cui-input-number-${controls}`
     )}>
-      {controllerPosition === 'horizontal' && [
+      {controls === 'horizontal' && [
         (<span key="increase" onClick={() => !disabled && calc(true)}
                className={setCN('number__increase', disabledBtn === 'add' && 'disabled')}>
           <Icon name="add"/>
@@ -108,7 +111,7 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
           <Icon name="minus"/>
         </span>)
       ]}
-      {controllerPosition === 'vertical' && !disabled && [
+      {controls === 'vertical' && !disabled && [
         (<span key="increase" onClick={() => calc(true)}
                className={setCN('number__increase', disabledBtn === 'add' && 'disabled')}>
           <Icon name="up"/>
@@ -132,7 +135,7 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
 };
 
 InputNumber.defaultProps = {
-  controllerPosition: 'vertical',
+  controls: 'vertical',
   size: 'default',
   step: 1,
   min: -Infinity,

@@ -100,6 +100,9 @@ $number-inner-size: 24px, 30px, 38px;
     width: nth($number-width, 2);
     border: none;
   }
+  &__input { padding: 0 nth($horizontal-padding, 2); }
+  &-large &__input { padding: 0 nth($horizontal-padding, 3); }
+  &-small &__input { padding: 0 nth($horizontal-padding, 1); }
 
   &.cui-input-number-horizontal {
     padding: 0 nth($number-inner-size, 2);
@@ -128,10 +131,6 @@ $number-inner-size: 24px, 30px, 38px;
   }
 
   &.cui-input-number-vertical {
-
-    .cui-input-number__input { padding: 0 nth($horizontal-padding, 2); }
-    &.cui-input-number-large .cui-input-number__input { padding: 0 nth($horizontal-padding, 3); }
-    &.cui-input-number-small .cui-input-number__input { padding: 0 nth($horizontal-padding, 1); }
 
     %v-controller-common {
       @extend %controller-common;

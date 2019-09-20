@@ -19,6 +19,10 @@ const ROUTERS = [
     name: 'Input 输入框',
     component: Example.Input
   }, {
+    key: 'input-number',
+    name: 'InputNumber 数字输入框',
+    component: Example.InputNumber
+  }, {
     key: 'dialog',
     name: 'Dialog 对话框',
     component: Example.Dialog
