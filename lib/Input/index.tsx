@@ -1,4 +1,4 @@
-import React, {ReactNode, useMemo, useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 import './index.scss';
 import {scopeClassMaker} from '../helpers';
 import {Icon} from '../index';
@@ -64,15 +64,15 @@ interface InputNumberProps extends Omit<InputProps, 'defaultValue'> {
 const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, width, size, controllerPosition, suffix, prefix, precision, step, min, max, onChange, defaultValue, disabled, ...restProps}) => {
   const _defaultVal = findNumber(defaultValue);
   const [_value, setValue] = useState<string>(precision === undefined ? _defaultVal : fixPrecision(_defaultVal, precision));
-  const setPrecision = (inputVal: string) => (inputVal.split('.')[1] || '').length;
-  // 在precision为设置的情况下，精度默认为用户输入_value的小数位。并且倍数_multiple也要随_precision改变。
-  const _precision = precision === undefined ? useMemo<number>(() => setPrecision(_value), [_value]) : precision;
-  const _multiple = useMemo<number>(() => Math.pow(10, _precision + 1), [_precision]);
+  const stepPrecision: number = (String(step!).split('.')[1] || '').length;
+  // 在没有设置precision的情况下，初始precision默认为step的精度，否则以precision为准
+  const [_precision, setPrecision] = useState<number>(precision === undefined ? stepPrecision : precision);
   const [disabledBtn, setDisabledBtn] = useState<string>(defaultValue === min ? 'minus' : defaultValue === max ? 'add' : '');
   const calc = (isAdd: boolean) => {
-    const result: number = isAdd ?
-      (Math.trunc(Number(_value) * _multiple) + (step! * _multiple)) / _multiple :
-      (Math.trunc(Number(_value) * _multiple) - (step! * _multiple)) / _multiple;    // 为了避免js的浮点数bug，这里将数字都乘精度倍数，计算出结构后再除以精度倍数
+    const multiple = Math.pow(10, stepPrecision),
+      num1: number = Number((_value || '0') + 'e' + stepPrecision),   // 不可以直接乘以倍数，小数的运算容易出现二进制的坑
+      num2: number = Number(step! + 'e' + stepPrecision),
+      result: number = isAdd ? (num1 + num2) / multiple : (num1 - num2) / multiple;
     setValue(fixPrecision(checkNumber(result, min!, max!), _precision));
     if (result > max!) {
       setDisabledBtn('add');
@@ -81,6 +81,14 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
     } else {
       setDisabledBtn('');
     }
+  };
+  const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const val: string = findNumber(e.target.value);
+    if (precision === undefined) {
+      // 若precision未设置，当用户更改inputValue时，则精度为step和inputValue间的最大精度
+      setPrecision(Math.max((val.split('.')[1] || '').length, stepPrecision));
+    }
+    setValue(val);
   };
   return (
     <div className={setCN(
@@ -114,7 +122,7 @@ const InputNumber: React.FunctionComponent<InputNumberProps> = ({className, widt
         style={{width}}
         className={setCN('number__input')}
         value={_value || ''}
-        onChange={(e) => setValue(findNumber(e.target.value))}
+        onChange={onInputChange}
         onBlur={() => setValue(fixPrecision(checkNumber(_value, min!, max!), _precision))}
         step={step}
         disabled={disabled}
