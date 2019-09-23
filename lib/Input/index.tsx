@@ -1,5 +1,6 @@
 import React, {ReactNode, useState} from 'react';
 import './index.scss';
+import TextArea, {TextAreaProps} from './TextArea';
 import {scopeClassMaker} from '../helpers';
 import {Icon} from '../index';
 
@@ -14,7 +15,7 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, '
 
 interface InputApis {
   Number: React.FunctionComponent<InputNumberProps>;
-  TextArea: React.FunctionComponent;
+  TextArea: React.FunctionComponent<TextAreaProps>;
 }
 
 type Input = React.FunctionComponent<InputProps> & InputApis
@@ -45,12 +46,7 @@ Input.defaultProps = {
   size: 'default'
 };
 
-
-Input.TextArea = () => {
-  return (
-    <textarea/>
-  );
-};
+Input.TextArea = TextArea;
 
 interface InputNumberProps extends Omit<InputProps, 'defaultValue' | 'onChange'> {
   defaultValue?: number;

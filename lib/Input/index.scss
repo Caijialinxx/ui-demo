@@ -15,6 +15,7 @@ $number-inner-size: 24px, 30px, 38px;
   box-shadow: none;
   background-color: white;
   transition: all 0.15s;
+  vertical-align: middle;
   &::placeholder { color: $dark_grey; }
   &:disabled {
     cursor: not-allowed;
@@ -39,6 +40,11 @@ $number-inner-size: 24px, 30px, 38px;
   }
 }
 
+textarea.cui-input {
+  resize: vertical;
+  min-height: 32px;
+  transition: all 0.15s, height 0s;
+}
 .cui-input {
   @extend %input-common;
   width: 100%;

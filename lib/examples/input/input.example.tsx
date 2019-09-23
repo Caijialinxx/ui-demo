@@ -4,6 +4,7 @@ import InputDemo2 from './input.demo.2';
 import InputDemo3 from './input.demo.3';
 import InputDemo4 from './input.demo.4';
 import InputDemo5 from './input.demo.5';
+import InputDemo6 from './input.demo.6';
 import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
 
 const InputExample: React.FunctionComponent = () => {
@@ -33,7 +34,12 @@ const InputExample: React.FunctionComponent = () => {
       demo: <InputDemo5/>,
       title: '前缀和后缀图标',
       intro: `可以为输入框上添加前缀或后缀。`
-    },
+    }, {
+      code: require('!!raw-loader!./input.demo.6.tsx').default,
+      demo: <InputDemo6/>,
+      title: '文本域',
+      intro: `调用\`<Input.Textarea/>\`可产生一个文本域。除了原生的属性外，还可通过设置\`autosize\`来规定文本域如何随内容自适应高度。`
+    }
   ];
   const attrs: AttrProps[] = [
     {
@@ -60,6 +66,14 @@ const InputExample: React.FunctionComponent = () => {
       default: 'false'
     }
   ];
+  const textarea_attrs: AttrProps[] = [
+    {
+      name: 'autosize',
+      intro: `自适应高度。默认为\`false\`，`,
+      type: 'boolean | { minRows?: number; maxRows?: number }',
+      default: `false`
+    }
+  ];
   return (
     <section className="markdown doc-input">
       <h1>Input 输入框</h1>
@@ -67,7 +81,10 @@ const InputExample: React.FunctionComponent = () => {
       <h2>代码演示</h2>
       {createDemoColumns(demos)}
       <h2>属性</h2>
+      <h3>Input</h3>
       {createAttrTable(attrs)}
+      <h3>Input.TextArea</h3>
+      {createAttrTable(textarea_attrs)}
     </section>
   );
 };
