@@ -13,17 +13,17 @@ const InputExample: React.FunctionComponent = () => {
       code: require('!!raw-loader!./input.demo.1.tsx').default,
       demo: <InputDemo1/>,
       title: '基本用法',
-      intro: ``
+      intro: `基本用法。`
     }, {
       code: require('!!raw-loader!./input.demo.2.tsx').default,
       demo: <InputDemo2/>,
       title: '禁用状态',
-      intro: ``
+      intro: `设置\`disabled\`为\`true\`可禁止用户输入。`
     }, {
       code: require('!!raw-loader!./input.demo.3.tsx').default,
       demo: <InputDemo3/>,
       title: '三种尺寸',
-      intro: ``
+      intro: `我们为\`<Input/>\`输入框定义了三种尺寸（大、默认、小），高度分别为\`40px\`、\`32px\`和\`26px\`。`
     }, {
       code: require('!!raw-loader!./input.demo.4.tsx').default,
       demo: <InputDemo4/>,
@@ -33,7 +33,7 @@ const InputExample: React.FunctionComponent = () => {
       code: require('!!raw-loader!./input.demo.5.tsx').default,
       demo: <InputDemo5/>,
       title: '前缀和后缀图标',
-      intro: `可以为输入框上添加前缀或后缀。`
+      intro: `设置\`prefix\`和\`suffix\`可分别为输入框上添加前缀和后缀。`
     }, {
       code: require('!!raw-loader!./input.demo.6.tsx').default,
       demo: <InputDemo6/>,
@@ -64,6 +64,10 @@ const InputExample: React.FunctionComponent = () => {
       intro: `是否禁用状态，默认为\`false\``,
       type: 'boolean',
       default: 'false'
+    }, {
+      name: 'onChange',
+      intro: `输入框内容改变时的回调`,
+      type: 'function(e)'
     }
   ];
   const textarea_attrs: AttrProps[] = [

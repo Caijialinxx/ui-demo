@@ -3,7 +3,7 @@ import {Input} from '../../index';
 
 const InputDemo2: React.FunctionComponent = () => {
   return (
-    <div className="input-demo-2">
+    <div>
       <Input disabled value="hi..."/>
     </div>
   );
