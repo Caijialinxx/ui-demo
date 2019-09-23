@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Dialog} from '../../index';
+import {Button, Dialog, Input} from '../../index';
 
 const DialogDemo2: React.FunctionComponent = () => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const DialogDemo2: React.FunctionComponent = () => {
           </Button>
         ]}>
         <div>
-          E-mail：<input value={email} onChange={handleChange} type="text"/>
+          E-mail：<Input width={320} value={email} onChange={handleChange}/>
         </div>
       </Dialog>
 
