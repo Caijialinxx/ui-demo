@@ -75,4 +75,27 @@ $grey_background: #f2f4f5;
       }
     }
   }
+  &.doc-layout {
+    .layout-demo-1 {
+      .cui-layout + .cui-layout { margin-top: 20px; }
+      .cui-layout-header, .cui-layout-aside, .cui-layout-content, .cui-layout-footer {
+        color: #fff;
+        text-align: center;
+      }
+      .cui-layout-header, .cui-layout-footer {
+        background: #7dbcea;
+      }
+      .cui-layout-content {
+        background: rgba(16, 142, 233, 1);
+        min-height: 120px;
+        line-height: 120px;
+      }
+      .cui-layout-aside {
+        width: 36%;
+        max-width: 300px;
+        line-height: 120px;
+        background: #3ba0e9;
+      }
+    }
+  }
 }

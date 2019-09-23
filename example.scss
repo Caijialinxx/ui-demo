@@ -83,6 +83,13 @@ $grey_background: #f2f4f5;
       }
     }
     .rmd {
+      blockquote {
+        margin: 1em 0;
+        padding-left: .8em;
+        color: #697b8c;
+        font-size: 90%;
+        border-left: 4px solid #ebedf0;
+      }
       p, li { line-height: 1.8em; }
       &.rmd2 {
         p { margin: 8px 0; }
@@ -104,6 +111,7 @@ $grey_background: #f2f4f5;
     .demos-container {
       display: flex;
       flex-wrap: wrap;
+      min-width: 300px;
       .demos-col {
         width: 48%;
         min-width: 300px;

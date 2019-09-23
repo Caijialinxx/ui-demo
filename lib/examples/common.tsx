@@ -51,17 +51,22 @@ const Demo: React.FunctionComponent<DemoProps> = (props) => {
   );
 };
 
-const createDemoColumns = (demos: DemoProps[]): ReactNode => {
+const createDemoColumns = (demos: DemoProps[], isSingle?: boolean): ReactNode => {
   const col1: ReactNode[] = [], col2: ReactNode[] = [];
-  demos.forEach((demo, index) => {
+  !isSingle && demos.forEach((demo, index) => {
     index % 2 === 0 ?
       col1.push(<Demo key={index} {...demo}/>) :
       col2.push(<Demo key={index} {...demo}/>);
   });
   return (
     <div className="demos-container">
-      <div className="demos-col">{col1}</div>
-      <div className="demos-col">{col2}</div>
+      {isSingle ?
+        demos.map((demo, index) => <Demo key={index} {...demo}/>) :
+        [
+          <div className="demos-col">{col1}</div>,
+          <div className="demos-col">{col2}</div>
+        ]
+      }
     </div>);
 };
 
