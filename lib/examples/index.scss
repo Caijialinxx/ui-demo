@@ -98,4 +98,15 @@ $grey_background: #f2f4f5;
       }
     }
   }
+  &.doc-form {
+    .form-demo-1 {
+      max-width: 280px;
+      .form-extra {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        a { cursor: pointer; color: $dark_primary; }
+      }
+    }
+  }
 }

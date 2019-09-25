@@ -67,7 +67,7 @@ textarea.cui-input {
     width: 100%;
     border: 1px solid $grey;
     border-radius: 4px;
-    display: flex;
+    display: inline-flex;   // fix: form表单中line-height失效问题
     align-items: center;
     flex-wrap: nowrap;
     padding: 0 nth($horizontal-padding, 2);
@@ -98,6 +98,7 @@ textarea.cui-input {
   border-radius: 4px;
   border: 1px solid $grey;
   vertical-align: middle; // 消除父元素多余的高度
+  line-height: 1;         // fix: form表单中数字输入框高度随容器高度增大
   &:hover:not(.cui-input-number-disabled) { border-color: $primary; }
 
   &__input {

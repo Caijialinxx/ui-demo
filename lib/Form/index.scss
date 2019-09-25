@@ -1,11 +1,11 @@
 @import "../global.scss";
 
-$label-width: 10em;
+//$label-width: 5em;
 $item-height: 40px;
 
 .cui-form {
   max-width: 600px;
-  margin-right: 80px;
+  //margin-right: 80px;
   display: flex;
   flex-direction: column;
   &-item {
@@ -16,14 +16,14 @@ $item-height: 40px;
       flex-shrink: 0;
       white-space: nowrap;
       display: inline-block;
-      width: $label-width;
+      //width: $label-width;
       text-align: right;
       &::after { content: ':'; margin: 0 10px 0 2px; }
     }
     &-required::before { content: '*'; color: $error; margin-right: 4px; }
     &-control-wrapper {
       flex: 1;
-      min-width: 220px;
+      //min-width: 220px;
       position: relative;
     }
     &-control {
@@ -43,7 +43,7 @@ $item-height: 40px;
     }
   }
   &-button {
-    margin-left: $label-width;
+    //margin-left: $label-width;
     align-self: baseline;
   }
 }

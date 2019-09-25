@@ -3,7 +3,7 @@ import './index.scss';
 import joinClasses from '../helpers/joinClasses';
 import {Icon} from '../index';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: 'primary' | 'success' | 'info' | 'warning' | 'danger';
   shape?: 'round' | 'circle';
   mode?: 'text' | 'plain';
