@@ -37,8 +37,9 @@ const Button: React.FunctionComponent<ButtonProps> = ({className, theme, shape, 
 };
 
 Button.defaultProps = {
+  type: 'button',     // fixed: 默认为"button"，以免在form表单中被当作提交按钮
   loading: false,
-}
+};
 
 // TODO: Button.Group
 

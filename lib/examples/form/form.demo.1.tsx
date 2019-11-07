@@ -6,14 +6,14 @@ const FormDemo1: React.FunctionComponent = () => {
     username: undefined,
     password: undefined,
   };
-  const fields = [
+  const items = [
     {
       key: 'username',
-      component: (<Input prefix={<Icon name="person"/>} placeholder="Username"/>),
+      field: (<Input prefix={<Icon name="person"/>} placeholder="Username"/>),
     },
     {
       key: 'password',
-      component: (<Input type="password" prefix={<Icon name="lock"/>} placeholder="Password"/>),
+      field: (<Input type="password" prefix={<Icon name="lock"/>} placeholder="Password"/>),
     }
   ];
   const formRules = {
@@ -28,7 +28,7 @@ const FormDemo1: React.FunctionComponent = () => {
     <div className="form-demo-1">
       <Form
         values={formValues}
-        fields={fields}
+        items={items}
         rules={formRules}
         submitButtonProps={{
           style: {width: '100%'},

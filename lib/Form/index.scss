@@ -10,9 +10,12 @@ $item-height: 40px;
   flex-direction: column;
   &-item {
     display: flex;
-    align-items: center;
+    //align-items: center;
     margin-bottom: 20px;
     &-label {
+      //float: left;
+      line-height: 40px;
+      vertical-align: middle;
       flex-shrink: 0;
       white-space: nowrap;
       display: inline-block;
@@ -22,6 +25,9 @@ $item-height: 40px;
     }
     &-required::before { content: '*'; color: $error; margin-right: 4px; }
     &-control-wrapper {
+      //float: left;
+      line-height: 40px;
+      vertical-align: top;
       flex: 1;
       //min-width: 220px;
       position: relative;
@@ -29,14 +35,20 @@ $item-height: 40px;
     &-control {
       width: 100%;
       line-height: $item-height;
+      &-with-extra {
+        display: flex;
+        align-items: center;
+        .cui-form-item-field { flex: 1; }
+        .cui-form-item-extra { margin-left: 10px; }
+      }
     }
-    &-wrong .cui-input {
+    &-wrong > &-field .cui-input {
       border-color: $error;
     }
     &-error {
       position: absolute;
       left: 0;
-      top: $item-height;
+      //top: $item-height;
       color: $error;
       font-size: 90%;
       line-height: 16px;

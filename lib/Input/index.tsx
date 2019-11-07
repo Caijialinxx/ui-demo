@@ -11,6 +11,7 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, '
   width?: string | number;
   prefix?: ReactNode;
   suffix?: ReactNode;
+  [K: string]: any;
 }
 
 interface InputApis {

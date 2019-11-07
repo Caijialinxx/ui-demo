@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ReactElement, ReactNode, ReactNodeArray, useState} from 'react';
 import './index.scss';
 import {flatten, groupBy, scopeClassMaker} from '../helpers';
 import {Button, ButtonProps} from '../index';
@@ -26,15 +26,16 @@ export interface FormErrors {
   [fieldKey: string]: string[]
 }
 
-interface FormField {
+interface FormItem {
   key: string;
   label?: string;
-  component: React.ReactElement;
+  field: ReactElement;
+  extra?: ReactNode | ReactNodeArray;
 }
 
 interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   values: FormValues;
-  fields?: FormField[];
+  items?: FormItem[];
   rules?: FormRules;
   labelWidth?: number | string;
   submitButtonProps?: ButtonProps;
@@ -42,13 +43,13 @@ interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onC
   onSubmit?: (errors: FormErrors | null, values: FormValues) => void;
 }
 
-const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, fields, onChange, onSubmit, submitButtonProps, ...restProps}) => {
+const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, items, onChange, onSubmit, submitButtonProps, ...restProps}) => {
   const [formData, setFormData] = useState(values);
-  const handleChange = (key: string, component: React.ReactElement, e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleChange = (key: string, fieldComponent: ReactElement, e: React.ChangeEvent<HTMLFormElement>) => {
     const value = e.target ? e.target.value : e;    // fix: 当组件onChange被重写，e.target不存在，返回的是value时的情况，如InputNumber、Checkbox等
     const newData = {...formData, [key]: value};
     setFormData(newData);
-    component.props.onChange ? component.props.onChange(e) :
+    fieldComponent.props.onChange ? fieldComponent.props.onChange(e) :
       onChange && onChange(newData);
   };
   const [formErrors, setFormErrors] = useState<FormErrors | null>(null);
@@ -70,51 +71,54 @@ const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, fi
   }, submitButtonProps);
   return (
     <form className={setCN('')} onSubmit={handleSubmit} {...restProps}>
-      {!!fields && fields.map(f => {
-        const fieldKey = f.key;
-        const isRequired = !!rules && !!rules[fieldKey] && !!rules[fieldKey].find(r => r.required === true);
-        return !!f.component && (
-          <div key={fieldKey} className={setCN('item')}>
-            {f.label && (
-              <span
-                className={setCN('item-label', isRequired && setCN('item-required'))}
-                style={{width: labelWidth}}
-              >
+      {!!items && [
+        items.map(f => {
+          const fieldKey = f.key;
+          const isRequired = !!rules && !!rules[fieldKey] && !!rules[fieldKey].find(r => r.required === true);
+          return !!f.field && (
+            <div key={fieldKey} className={setCN('item')}>
+              {f.label && (
+                <span
+                  className={setCN('item-label', isRequired && setCN('item-required'))}
+                  style={{width: labelWidth}}
+                >
                 {f.label}
               </span>
-            )}
-            <div className={setCN('item-control-wrapper')} style={!f.label ? {marginLeft: labelWidth} : undefined}>
-              <div className={setCN('item-control', !!formErrors && !!formErrors[fieldKey] && setCN('item-wrong'))}>
-                {React.cloneElement(f.component, {onChange: handleChange.bind(null, fieldKey, f.component)})}
+              )}
+              <div className={setCN('item-control-wrapper')} style={!f.label ? {marginLeft: labelWidth} : undefined}>
+                <div className={setCN('item-control', !!f.extra && setCN('item-control-with-extra'), !!formErrors && !!formErrors[fieldKey] && setCN('item-wrong'))}>
+                  <span className={setCN('item-field')}>
+                    {React.cloneElement(f.field, {onChange: handleChange.bind(null, fieldKey, f.field)})}
+                  </span>
+                  {f.extra && (
+                    <span className={setCN('item-extra')}>{f.extra}</span>
+                  )}
+                </div>
+                {!!formErrors && formErrors[fieldKey] && (
+                  <span className={setCN('item-error')}>{formErrors[fieldKey]![0]}</span>)}
               </div>
-              {!!formErrors && formErrors[fieldKey] && (
-                <span className={setCN('item-error')}>{formErrors[fieldKey]![0]}</span>)}
             </div>
-          </div>
-        );
-      })}
-      {!!fields && (
-        <Button
-          {...btnProps}
-          style={{marginLeft: labelWidth, ...btnProps.style}}
-          className={setCN('button', btnProps.className)}
-        >
-          {btnProps.value}
-        </Button>
-      )}
+          );
+        }), (
+          <Button
+            key="__btn_submit__"
+            {...btnProps}
+            style={{marginLeft: labelWidth, ...btnProps.style}}
+            className={setCN('button', btnProps.className)}
+          >
+            {btnProps.value}
+          </Button>
+        )]
+      }
     </form>
   );
 };
-
-// TODO: Form.Item
-
-
 
 type InitialError = string | Promise<string>;
 
 const Validate = (values: FormValues, rules: FormRules, callback?: (errors: FormErrors | null) => void) => {
   const errors: { [fieldKey: string]: InitialError[] } = {};
-  for (const fieldKey in rules) {
+  Object.keys(rules).map(fieldKey => {
     // 遍历每个字段，获得该字段的数据、所有规则
     const fieldValue = values[fieldKey];
     const itemErrors: InitialError[] = [];  // 存储该字段的所有错误
@@ -141,7 +145,7 @@ const Validate = (values: FormValues, rules: FormRules, callback?: (errors: Form
     if (itemErrors.length > 0) {
       errors[fieldKey] = itemErrors;
     }
-  }
+  });
   const flattenedErrors = flatten(Object.keys(errors).map(fieldKey => errors[fieldKey].map((err: InitialError) => [fieldKey, err])));
   // 将string和Promise<string>全部转换成已resolved的Promise<string>，使得后续的Promise.all()可以检查所有的异步promise
   const newPromises = flattenedErrors.map(([fieldKey, promiseOrString]) =>

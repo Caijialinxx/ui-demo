@@ -1,6 +1,7 @@
 import React from 'react';
 import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
 import FormDemo1 from './form.demo.1';
+import FormDemo2 from './form.demo.2';
 
 const FormExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [
@@ -10,66 +11,91 @@ const FormExample: React.FunctionComponent = () => {
       title: '基本用法',
       intro: `典型的页面布局。`
     },
-    // TODO: Form.Item
+    {
+      code: require('!!raw-loader!./form.demo.2.tsx').default,
+      demo: <FormDemo2/>,
+      title: '更个性化的表单',
+      intro: `我们可以为表单行添加标签名，甚至是非表单域的元素。\`labelWidth\`为左边标签的宽度，若设置了数值则默认向右对齐，否则全部向左顶格。`
+    },
     // TODO: 校验规则rules，自定义校验validator
   ];
   const form_attrs: AttrProps[] = [
       {
         name: 'values',
-        intro: '表单的数据对象，索引与表单域\`fields.key\`的值对应，值即为所需的数据。',
-        type: '{ \\[fieldName: string\\]: string | undefined | boolean | number }'
+        intro: '表单的数据对象，索引与表单行的\`key\`的值对应，值即为所需的数据。',
+        type: '{ \\[fieldKey: string\\]: string | undefined | boolean | number }'
       }, {
-        name: 'fields',
-        intro: '表单行。使用该属性时，组件会自动为表单提供一个提交按钮，我们提供了\`submitButtonProps\`属性来个性化设置按钮。',
-        type: 'FormField[]'
+        name: 'items',
+        intro: '表单行。',
+        type: 'FormItem[]'
       }, {
         name: 'rules',
         intro: '表单的校验规则',
-        type: '{ \\[fieldName: string\\]: FormFieldRule[] }'
+        type: '{ \\[fieldKey: string\\]: FormFieldRule[] }'
       }, {
         name: 'labelWidth',
         intro: '表单左边标签的宽度',
         type: 'number | string'
       }, {
         name: 'submitButtonProps',
-        intro: '设置内置提交按钮的属性（仅在\`fields\`存在的情况下生效）',
+        intro: '`Form`组件内置的提交按钮属性',
         type: 'ButtonProps',
         default: `{ type: 'submit', theme: 'primary', value: 'Confirm' }`
       }, {
         name: 'onChange',
         intro: '表单数据变化时的回调',
-        type: 'function(values: { \\[fieldName: string\\]: string | undefined | boolean | number }[])'
+        type: 'function(values: { \\[fieldKey: string\\]: string | undefined | boolean | number }[])'
       }, {
         name: 'onSubmit',
         intro: '表单数据提交时的回调',
-        type: 'function(errors: { \\[fieldName: string\\]: string[] }[] | null, values: { \\[fieldName: string\\]: string | undefined | boolean | number }[])'
+        type: 'function(errors: { \\[fieldKey: string\\]: string[] }[] | null, values: { \\[fieldKey: string\\]: string | undefined | boolean | number }[])'
       },
     ],
-    form_field_attrs: AttrProps[] = [
+    form_item_attrs: AttrProps[] = [
       {
         name: 'key',
-        intro: '对应\`values\`中的\`fieldName\`',
+        intro: '对应\`values\`中的\`fieldKey\`',
         type: 'string'
-      },
-      {
+      }, {
         name: 'label',
-        intro: '\`fieldName\`的别名，可选值',
+        intro: '\`fieldKey\`的标签名，可选值',
         type: 'string'
-      },
-      {
-        name: 'component',
-        intro: '对应表单域数据所绑定的组件。建议只绑定一个直接与\`fieldName\`对应的数据相符的组件，而不要设置多余的与数据无关的组件（包括给其添加父元素），否则会导致数据绑定的位置错误。',
+      }, {
+        name: 'field',
+        intro: '对应表单域数据所绑定的组件。建议只绑定一个直接与\`fieldKey\`对应的数据相符的组件，而不要设置多余的与数据无关的组件（包括给其添加父元素），否则会导致数据绑定的位置错误。',
         type: 'ReactElement'
+      }, {
+        name: 'extra',
+        intro: '额外的元素。可选值',
+        type: 'ReactNode | ReactNodeArray'
       }
     ],
-    // TODO: form_field_rule_attrs
     form_field_rule_attrs: AttrProps[] = [
-      // required?: boolean;
-      // minLength?: number;
-      // maxLength?: number;
-      // pattern?: RegExp;
-      // validator?: (value: any) => Promise<string>;
-      // message?: string;
+      {
+        name: 'required',
+        intro: '是否必填',
+        type: 'boolean',
+      }, {
+        name: 'minLength',
+        intro: '输入的最小长度',
+        type: 'number',
+      }, {
+        name: 'maxLength',
+        intro: '输入的最大长度',
+        type: 'number',
+      }, {
+        name: 'pattern',
+        intro: '正则表达式',
+        type: 'RegExp',
+      }, {
+        name: 'validator',
+        intro: '自定义验证函数',
+        type: '(value: any) => Promise<string>',
+      }, {
+        name: 'message',
+        intro: '错误信息提示',
+        type: 'string',
+      },
     ];
   return (
     <section className="markdown doc-form">
@@ -80,8 +106,8 @@ const FormExample: React.FunctionComponent = () => {
       <h2>属性</h2>
       <h3>Form</h3>
       {createAttrTable(form_attrs)}
-      <h3>FormField</h3>
-      {createAttrTable(form_field_attrs)}
+      <h3>FormItem</h3>
+      {createAttrTable(form_item_attrs)}
       <h3>FormFieldRule</h3>
       {createAttrTable(form_field_rule_attrs)}
     </section>
