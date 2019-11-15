@@ -63,8 +63,8 @@ const createDemoColumns = (demos: DemoProps[], isSingle?: boolean): ReactNode =>
       {isSingle ?
         demos.map((demo, index) => <Demo key={index} {...demo}/>) :
         [
-          <div className="demos-col">{col1}</div>,
-          <div className="demos-col">{col2}</div>
+          <div key='col1' className="demos-col">{col1}</div>,
+          <div key='col2' className="demos-col">{col2}</div>
         ]
       }
     </div>);
