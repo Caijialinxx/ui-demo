@@ -4,7 +4,8 @@ import Button, {ButtonProps} from './Button';
 import Dialog from './Dialog';
 import Layout, {Header, Footer, Content, Aside} from './Layout';
 import Form, {FormValues, FormErrors} from './Form';
-import Input, {InputNumber} from './Input';
+import Input, {InputNumber, TextArea} from './Input';
+import Checkbox from './Checkbox';
 
 export {
   Icon,
@@ -20,5 +21,7 @@ export {
   FormValues,
   FormErrors,
   Input,
-  InputNumber
+  InputNumber,
+  TextArea,
+  Checkbox,
 };

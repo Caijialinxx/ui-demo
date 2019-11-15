@@ -1,0 +1,143 @@
+@import '../global.scss';
+
+// 1-small, 2-default, 3-large
+$size: 18px, 22px, 26px;
+$horizontal-padding: 5px, 8px, 10px;
+
+.cui-checkbox {
+  display: inline-block;
+  outline: none;
+  line-height: 1;
+  position: relative;
+
+  &-wrapper {
+    cursor: pointer;
+    //white-space: nowrap;
+    display: inline-block;
+
+    &:hover .cui-checkbox-inner, .cui-checkbox-input:focus + .cui-checkbox-inner {
+      border-color: $primary;
+    }
+  }
+
+  &-inner {
+    position: absolute;
+    border: 1px solid $grey;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: all 0.15s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      cursor: default;
+      border: 2px solid white;
+      border-left: 0;
+      border-top: 0;
+      width: 3px;
+      height: 7px;
+      transform: rotate(45deg) scale(0);
+      transition: all .15s cubic-bezier(.12, .4, .29, 1.46) .1s;
+      box-sizing: content-box;
+    }
+  }
+
+  &-input {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-label {
+    padding: 0 nth($horizontal-padding, 2);
+    transition: all 0.15s;
+    color: inherit;
+  }
+
+  &-indeterminate.cui-checkbox-wrapper {
+    .cui-checkbox-inner::after {
+      background: #1790ff;
+      content: '';
+      top: 3px;
+      left: 3px;
+      width: 7px;
+      height: 7px;
+      position: absolute;
+      border: none;
+      transform: scale(1);
+    }
+  }
+
+  &-checked.cui-checkbox-wrapper {
+    .cui-checkbox-inner {
+      border-color: $primary;
+      background: $primary;
+
+      &::after {
+        transform: rotate(45deg) scale(1);
+      }
+    }
+
+    .cui-checkbox-label {
+      color: $primary;
+    }
+  }
+
+  &-disabled.cui-checkbox-wrapper {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.25);
+
+    &.cui-checkbox-checked {
+      .cui-checkbox-inner {
+        border-color: $grey;
+
+        &::after {
+          border-color: $grey;
+        }
+      }
+
+      .cui-checkbox-label {
+        color: inherit;
+      }
+    }
+
+    &.cui-checkbox-indeterminate {
+      .cui-checkbox-inner::after {
+        background-color: $grey;
+      }
+    }
+
+    .cui-checkbox-inner {
+      background-color: rgba($grey, 0.25);
+    }
+
+    &:hover .cui-checkbox-inner {
+      border-color: $grey;
+    }
+  }
+
+  &-group-item {
+    margin-right: 12px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &-large {
+    line-height: nth($size, 3);
+    padding: 0 nth($horizontal-padding, 3);
+  }
+
+  &-small {
+    line-height: nth($size, 1);
+    padding: 0 nth($horizontal-padding, 1);
+  }
+}
