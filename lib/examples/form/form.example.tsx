@@ -15,9 +15,8 @@ const FormExample: React.FunctionComponent = () => {
       code: require('!!raw-loader!./form.demo.2.tsx').default,
       demo: <FormDemo2/>,
       title: '更个性化的表单',
-      intro: `我们可以为表单行添加标签名，甚至是非表单域的元素。\`labelWidth\`为左边标签的宽度，若设置了数值则默认向右对齐，否则全部向左顶格。`
+      intro: `我们可以自由选择是否为\`items\`中的表单行添加\`label\`，甚至可以设置\`extra\`来添加非表单域的元素。更重要的是，\`rules\`允许我们对表单行使用\`validator\`自定义验证函数进行值的校验。`
     },
-    // TODO: 校验规则rules，自定义校验validator
   ];
   const form_attrs: AttrProps[] = [
       {
@@ -34,7 +33,7 @@ const FormExample: React.FunctionComponent = () => {
         type: '{ \\[fieldKey: string\\]: FormFieldRule[] }'
       }, {
         name: 'labelWidth',
-        intro: '表单左边标签的宽度',
+        intro: '表单左边标签的宽度。若设置了数值则默认向右对齐，否则全部向左顶格',
         type: 'number | string'
       }, {
         name: 'submitButtonProps',

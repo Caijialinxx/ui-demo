@@ -14,7 +14,7 @@ interface FormFieldRule {
   minLength?: number;
   maxLength?: number;
   pattern?: RegExp;
-  validator?: (value: any) => Promise<string>;
+  validator?: (value: any) => Promise<any>;
   message?: string;
 }
 
@@ -46,7 +46,21 @@ interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onC
 const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, items, onChange, onSubmit, submitButtonProps, ...restProps}) => {
   const [formData, setFormData] = useState(values);
   const handleChange = (key: string, fieldComponent: ReactElement, e: React.ChangeEvent<HTMLFormElement>) => {
-    const value = e.target ? e.target.value : e;    // fix: 当组件onChange被重写，e.target不存在，返回的是value时的情况，如InputNumber、Checkbox等
+    let value;
+    if (e.target) {
+      switch (e.target.type) {
+        case 'checkbox':
+          value = e.target.checked;
+          break;
+        case 'text':
+          value = e.target.value;
+          break;
+        default:
+          break;
+      }
+    } else {
+      value = e;      // fix: 当组件onChange被重写，e.target不存在，返回的是value时的情况，如InputNumber、Checkbox.Group等
+    }
     const newData = {...formData, [key]: value};
     setFormData(newData);
     fieldComponent.props.onChange ? fieldComponent.props.onChange(e) :
@@ -86,7 +100,8 @@ const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, it
               </span>
               )}
               <div className={setCN('item-control-wrapper')} style={!f.label ? {marginLeft: labelWidth} : undefined}>
-                <div className={setCN('item-control', !!f.extra && setCN('item-control-with-extra'), !!formErrors && !!formErrors[fieldKey] && setCN('item-wrong'))}>
+                <div
+                  className={setCN('item-control', !!f.extra && setCN('item-control-with-extra'), !!formErrors && !!formErrors[fieldKey] && setCN('item-wrong'))}>
                   <span className={setCN('item-field')}>
                     {React.cloneElement(f.field, {onChange: handleChange.bind(null, fieldKey, f.field)})}
                   </span>
@@ -125,7 +140,7 @@ const Validate = (values: FormValues, rules: FormRules, callback?: (errors: Form
     rules[fieldKey].map(r => {
       // 遍历该字段的每个规则
       if (!!r.validator) {
-        itemErrors.push(r.validator(fieldValue as string));
+        itemErrors.push(r.validator(fieldValue));
       }
       if (r.required && !fieldValue) {
         itemErrors.push(r.message || '不能为空');
