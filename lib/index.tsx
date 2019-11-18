@@ -6,6 +6,7 @@ import Layout, {Header, Footer, Content, Aside} from './Layout';
 import Form, {FormValues, FormErrors} from './Form';
 import Input, {InputNumber, TextArea} from './Input';
 import Checkbox from './Checkbox';
+import Radio from './Radio';
 
 export {
   Icon,
@@ -24,4 +25,5 @@ export {
   InputNumber,
   TextArea,
   Checkbox,
+  Radio,
 };

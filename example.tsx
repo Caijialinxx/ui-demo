@@ -23,6 +23,10 @@ const ROUTERS = [
     name: 'InputNumber 数字输入框',
     component: Example.InputNumber
   }, {
+    key: 'radio',
+    name: 'Radio 单选框',
+    component: Example.Radio
+  }, {
     key: 'checkbox',
     name: 'Checkbox 多选框',
     component: Example.Checkbox
