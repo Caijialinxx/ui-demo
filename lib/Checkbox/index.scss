@@ -1,9 +1,5 @@
 @import '../global.scss';
 
-// 1-small, 2-default, 3-large
-$size: 18px, 22px, 26px;
-$horizontal-padding: 5px, 8px, 10px;
-
 .cui-checkbox {
   display: inline-block;
   outline: none;
@@ -12,7 +8,6 @@ $horizontal-padding: 5px, 8px, 10px;
 
   &-wrapper {
     cursor: pointer;
-    //white-space: nowrap;
     display: inline-block;
 
     &:hover .cui-checkbox-inner, .cui-checkbox-input:focus + .cui-checkbox-inner {
@@ -57,7 +52,7 @@ $horizontal-padding: 5px, 8px, 10px;
   }
 
   &-label {
-    padding: 0 nth($horizontal-padding, 2);
+    padding: 0 8px;
     transition: all 0.15s;
     color: inherit;
   }
@@ -129,15 +124,5 @@ $horizontal-padding: 5px, 8px, 10px;
     &:last-child {
       margin-right: 0;
     }
-  }
-
-  &-large {
-    line-height: nth($size, 3);
-    padding: 0 nth($horizontal-padding, 3);
-  }
-
-  &-small {
-    line-height: nth($size, 1);
-    padding: 0 nth($horizontal-padding, 1);
   }
 }

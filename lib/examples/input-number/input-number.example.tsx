@@ -81,7 +81,7 @@ const InputNumberExample: React.FunctionComponent = () => {
   return (
     <section className="markdown doc-input-number">
       <h1>InputNumber 数字输入框</h1>
-      通过鼠标或键盘输入内容，包含基本输入框、数字输入框、密码框、搜索框等。
+      提供了不同样式的数字输入框。
       <h2>代码演示</h2>
       {createDemoColumns(demos)}
       <h2>属性</h2>

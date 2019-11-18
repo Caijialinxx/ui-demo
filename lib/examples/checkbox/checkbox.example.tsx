@@ -108,7 +108,6 @@ const CheckboxExample: React.FunctionComponent = () => {
   return (
     <section className="markdown doc-checkbox">
       <h1>Checkbox 多选框</h1>
-      通过鼠标或键盘输入内容，包含基本输入框、数字输入框、密码框、搜索框等。
       <h2>代码演示</h2>
       {createDemoColumns(demos)}
       <h2>属性</h2>

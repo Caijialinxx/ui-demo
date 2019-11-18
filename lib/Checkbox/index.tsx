@@ -50,12 +50,13 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-interface CheckboxGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
+interface CheckboxGroupProps {
   defaultValue?: string[];
   disabled?: boolean;
   options: Array<string | CheckboxGroupItemProps>;
   value?: string[];
-  onChange?: (checkedValue: string[]) => void
+  onChange?: (checkedValue: string[]) => void;
+  className?: string;
 }
 
 interface CheckboxGroupItemProps {

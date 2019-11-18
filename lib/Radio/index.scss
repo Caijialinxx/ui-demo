@@ -12,7 +12,6 @@ $horizontal-padding: 5px, 8px, 10px;
 
   &-wrapper {
     cursor: pointer;
-    //white-space: nowrap;
     display: inline-block;
 
     &:hover .cui-radio-inner, .cui-radio-input:focus + .cui-radio-inner {
