@@ -3,6 +3,7 @@
 exports[`Icon 传name 1`] = `
 <svg
   className="cui-icon"
+  fill="currentColor"
 >
   <use
     xlinkHref="#emoji-cool"
@@ -13,6 +14,7 @@ exports[`Icon 传name 1`] = `
 exports[`Icon 传name、className 1`] = `
 <svg
   className="cui-icon icon"
+  fill="currentColor"
 >
   <use
     xlinkHref="#emoji-happy"
