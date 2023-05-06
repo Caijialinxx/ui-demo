@@ -58,7 +58,7 @@ const DialogExample: React.FunctionComponent = () => {
   ];
 
   const apiMd: string = `组件提供了一些静态方法，包括：
-- \`Dialog.alert(contentOrProps: string | DialogFuncProps, title?: string)\`收到发咖啡
+- \`Dialog.alert(contentOrProps: string | DialogFuncProps, title?: string)\`
 - \`Dialog.confirm(props: DialogFuncProps)\`
 
 我们可以看到，\`Dialog.alert\`的第一个参数可以是\`string\`类型，也可以是\`DialogFuncProps\`，当类型为后者时，第二个参数\`title\`无效。具体的使用例子可参照「代码演示-内置方法的调用」。下面我们来看看\`DialogFuncProps\`的具体参数：`;
