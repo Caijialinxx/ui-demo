@@ -1,4 +1,4 @@
-import {scopeClassMaker, flatten, groupBy} from '../index'
+import {scopeClassMaker, flatten, groupBy} from '@helpers/index'
 
 describe('测试scopeClassMaker', () => {
   it('传空字符串', () => {

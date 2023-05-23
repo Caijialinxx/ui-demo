@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Icon from '../index'
+import Icon from '@components/Icon'
 import {mount} from 'enzyme'
 
 describe('Icon', () => {

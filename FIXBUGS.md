@@ -129,6 +129,21 @@
     Enzyme.configure({ adapter: new Adapter() })
     ```
 
+3. 在 Webpack 中添加 `resolve.alias` 并更新文件中引入路径为别名前缀后，运行 `yarn test` 报错
+    ![jest报错找不到模块.png](https://s2.loli.net/2023/05/23/rvk34cTzFVXORt8.png)
+    ```js
+    // jest.config.js
+    module.exports = {
+      moduleNameMapper: {
+        "@helpers/(.*)$": "<rootDir>/lib/helpers/$1",
+        // ...
+      },
+      // ...
+    }
+    ```
+
+
+
 ## NPM 发布流程
 1. `npm adduser` 登录
 2. `npm publish`

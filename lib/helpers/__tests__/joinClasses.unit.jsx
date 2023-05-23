@@ -1,4 +1,4 @@
-import joinClasses from '../joinClasses'
+import joinClasses from '@helpers/joinClasses'
 
 describe('测试组合多个className', () => {
   it('传一个参', () => {
