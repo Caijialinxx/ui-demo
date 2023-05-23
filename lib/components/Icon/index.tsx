@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './importIcons.js';
 import './index.scss';
-import joinClasses from '../helpers/joinClasses';
+import joinClasses from '../../helpers/joinClasses';
 
 interface IconProps extends React.SVGAttributes<SVGSVGElement | SVGUseElement> {
   name: string;

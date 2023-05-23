@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import './index.scss';
-import {scopeClassMaker} from '../helpers';
+import {scopeClassMaker} from '../../helpers';
 import Aside from './Aside';
 import Header from './Header';
 import Content from './Content';

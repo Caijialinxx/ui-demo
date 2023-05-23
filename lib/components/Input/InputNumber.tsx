@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './index.scss';
-import {scopeClassMaker} from '../helpers';
-import {Icon} from '../index';
+import {scopeClassMaker} from '../../helpers';
+import {Icon} from '../../index';
 
 const setCN = scopeClassMaker('cui-input');
 

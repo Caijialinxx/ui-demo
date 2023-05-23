@@ -1,7 +1,7 @@
 import React, {ReactElement, ReactNode, useMemo} from 'react';
 import './index.scss';
-import joinClasses from '../helpers/joinClasses';
-import {Icon} from '../index';
+import joinClasses from '../../helpers/joinClasses';
+import {Icon} from '../../index';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: 'primary' | 'success' | 'info' | 'warning' | 'danger';

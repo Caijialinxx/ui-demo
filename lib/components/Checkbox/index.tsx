@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler, FunctionComponent, useEffect, useState} from 'react';
 import './index.scss';
-import {scopeClassMaker} from '../helpers';
+import {scopeClassMaker} from '../../helpers';
 
 const setCN = scopeClassMaker('cui-checkbox');
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {scopeClassMaker} from '../helpers';
+import {scopeClassMaker} from '../../helpers';
 
 const setCN = scopeClassMaker('cui-layout-header');
 
