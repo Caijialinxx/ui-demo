@@ -5,6 +5,13 @@ module.exports = {
     index: './lib/index.tsx'
   },
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'lib/'),
+      '@components': path.resolve(__dirname, 'lib/components/'),
+      '@examples': path.resolve(__dirname, 'lib/examples/'),
+      '@helpers': path.resolve(__dirname, 'lib/helpers/'),
+      '@assets': path.resolve(__dirname, 'lib/assets/'),
+    },
     extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   output: {

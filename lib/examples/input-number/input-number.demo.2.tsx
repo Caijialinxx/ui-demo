@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, InputNumber} from '../../index';
+import {Button, InputNumber} from '@/index';
 
 const InputNumberDemo2: React.FunctionComponent = () => {
   const [disabled, setDisabled] = useState<boolean>(true);

@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import './index.scss';
 import InputNumber, {InputNumberProps} from './InputNumber';
 import TextArea, {TextAreaProps} from './TextArea';
-import {scopeClassMaker} from '../../helpers';
+import {scopeClassMaker} from '@helpers/index';
 
 const setCN = scopeClassMaker('cui-input');
 

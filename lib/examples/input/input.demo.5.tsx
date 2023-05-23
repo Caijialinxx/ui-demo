@@ -1,5 +1,5 @@
 import React from 'react';
-import {Icon, Input} from '../../index';
+import {Icon, Input} from '@/index';
 
 const InputDemo5: React.FunctionComponent = () => {
   return (

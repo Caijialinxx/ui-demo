@@ -1,5 +1,5 @@
 import React from 'react';
-import {Radio} from '../../index';
+import {Radio} from '@/index';
 
 const RadioDemo2: React.FunctionComponent = () => {
   return (

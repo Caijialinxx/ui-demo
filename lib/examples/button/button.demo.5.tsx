@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button} from '../../index';
+import {Button} from '@/index';
 
 const ButtonDemo5: React.FunctionComponent = () => {
   const [loading1, setLoading1] = useState<boolean>(false);

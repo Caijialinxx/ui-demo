@@ -37,6 +37,44 @@
     export default Button
     ```
 
+3. 在 Webpack 中添加 `resolve.alias` 并更新文件中引入路径为别名前缀后，TS报错
+    `webpack.config.js` 配置如下：
+    ```js
+    module.exports = {
+      resolve: {
+        alias: {
+          '@components': path.resolve(__dirname, 'lib/components/'),
+          // ...
+        },
+        // ...
+      },
+      // ...
+    }
+    ```
+    `lib/index.tsx` 中引入路径改为：
+    ```diff
+    - import Icon from './components/Icon';
+    + import Icon from '@components/Icon';
+    ```
+    报错信息如下：
+    > ERROR in [at-loader] ./lib/index.tsx:2:18 
+    > TS2307: Cannot find module '@components/Icon'.
+    
+    这是因为项目中使用的是 ts ，在编译时 ts 无法解析这个模块名。只需要在 `tsconfig.json` 中配置 `compilerOptions.paths` 使模块名能够基于 `baseUrl` 的路径映射到对应列表中即可，具体配置如下：
+    ```json
+    // tsconfig.json
+    {
+      "compilerOptions": {
+        /* Base directory to resolve non-absolute module names. */
+        "baseUrl": "./",
+        /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+        "paths": {
+          "@components/*": ["lib/components/*"]
+        }
+      }
+    }
+    ```
+
 ## 关于 Webpack 的配置
 1. 无法解析自定义模块
     > ERROR in ./lib/index.tsx

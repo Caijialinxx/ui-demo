@@ -1,5 +1,5 @@
 import React from 'react';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 import CheckboxDemo1 from './checkbox.demo.1';
 import CheckboxDemo2 from './checkbox.demo.2';
 import CheckboxDemo3 from './checkbox.demo.3';

@@ -1,7 +1,7 @@
 import React, {ReactElement, ReactNode, ReactNodeArray, useState} from 'react';
 import './index.scss';
-import {flatten, groupBy, scopeClassMaker} from '../../helpers';
-import {Button, ButtonProps} from '../../index';
+import {flatten, groupBy, scopeClassMaker} from '@helpers/index';
+import {Button, ButtonProps} from '@/index';
 
 const setCN = scopeClassMaker('cui-form');
 

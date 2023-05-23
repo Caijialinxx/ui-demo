@@ -3,7 +3,7 @@ import InputNumberDemo1 from './input-number.demo.1';
 import InputNumberDemo2 from './input-number.demo.2';
 import InputNumberDemo3 from './input-number.demo.3';
 import InputNumberDemo4 from './input-number.demo.4';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 
 const InputNumberExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [

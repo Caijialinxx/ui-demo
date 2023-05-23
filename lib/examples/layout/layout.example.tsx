@@ -1,6 +1,6 @@
 import React from 'react';
 import LayoutDemo1 from './layout.demo.1';
-import {AttrProps, createAttrTable, createDemoColumns, createMarkdown, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, createMarkdown, DemoProps} from '@examples/common';
 
 const LayoutExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [

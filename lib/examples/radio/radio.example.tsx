@@ -1,5 +1,5 @@
 import React from 'react';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 import RadioDemo1 from './radio.demo.1';
 import RadioDemo2 from './radio.demo.2';
 import RadioDemo3 from './radio.demo.3';

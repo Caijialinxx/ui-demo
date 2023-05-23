@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Dialog} from '../../index';
+import {Button, Dialog} from '@/index';
 
 const DialogDemo3: React.FunctionComponent = () => {
   return (

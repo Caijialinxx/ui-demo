@@ -1,5 +1,5 @@
 import React, {ChangeEventHandler} from 'react';
-import {Radio} from '../../index';
+import {Radio} from '@/index';
 
 const RadioDemo1: React.FunctionComponent = () => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {

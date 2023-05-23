@@ -1,8 +1,8 @@
 import React, {Fragment, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import {Icon, Button} from '../../index';
-import {scopeClassMaker} from '../../helpers';
+import {Icon, Button} from '@/index';
+import {scopeClassMaker} from '@helpers/index';
 
 interface DialogProps {
   visible?: boolean;

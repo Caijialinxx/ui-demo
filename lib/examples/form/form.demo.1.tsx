@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, FormValues, FormErrors, Input, Icon} from '../../index';
+import {Form, FormValues, FormErrors, Input, Icon} from '@/index';
 
 const FormDemo1: React.FunctionComponent = () => {
   const formValues: FormValues = {

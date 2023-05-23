@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Dialog} from '../../index';
+import {Button, Dialog} from '@/index';
 
 const DialogDemo1: React.FunctionComponent = () => {
   const [visible, setVisible] = useState(false);

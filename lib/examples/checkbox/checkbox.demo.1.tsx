@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox} from '../../index';
+import {Checkbox} from '@/index';
 
 const CheckboxDemo1: React.FunctionComponent = () => {
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {

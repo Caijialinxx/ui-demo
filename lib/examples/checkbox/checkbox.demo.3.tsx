@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Checkbox} from '../../index';
+import {Button, Checkbox} from '@/index';
 
 const CheckboxDemo3: React.FunctionComponent = () => {
   const [checked, setChecked] = useState();

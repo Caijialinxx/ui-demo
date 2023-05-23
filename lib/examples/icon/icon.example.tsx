@@ -1,8 +1,8 @@
 import React from 'react';
 import IconDemo1 from './icon.demo.1';
 import IconDemo2 from './icon.demo.2';
-import {Icon} from '../../index';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {Icon} from '@/index';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 
 const IconExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [

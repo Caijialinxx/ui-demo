@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Icon} from '../../index';
+import {Button, Icon} from '@/index';
 
 const ButtonDemo2: React.FunctionComponent = () => {
   return (

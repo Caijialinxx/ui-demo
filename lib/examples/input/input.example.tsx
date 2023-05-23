@@ -5,7 +5,7 @@ import InputDemo3 from './input.demo.3';
 import InputDemo4 from './input.demo.4';
 import InputDemo5 from './input.demo.5';
 import InputDemo6 from './input.demo.6';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 
 const InputExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [

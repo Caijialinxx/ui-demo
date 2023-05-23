@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler, FunctionComponent, ReactNode, useEffect, useState} from 'react';
 import './index.scss';
-import {scopeClassMaker} from '../../helpers';
+import {scopeClassMaker} from '@helpers/index';
 
 const setCN = scopeClassMaker('cui-radio');
 

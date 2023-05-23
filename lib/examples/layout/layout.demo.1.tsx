@@ -1,5 +1,5 @@
 import React from 'react';
-import {Aside, Content, Footer, Header, Layout} from '../../index';
+import {Aside, Content, Footer, Header, Layout} from '@/index';
 
 const LayoutDemo1: React.FunctionComponent = () => {
   return (

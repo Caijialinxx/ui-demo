@@ -5,7 +5,7 @@ import ButtonDemo3 from './button.demo.3';
 import ButtonDemo4 from './button.demo.4';
 import ButtonDemo5 from './button.demo.5';
 import ButtonDemo6 from './button.demo.6';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 
 const ButtonExample: React.FunctionComponent = () => {
   const demos: DemoProps[] = [

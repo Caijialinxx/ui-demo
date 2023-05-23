@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from '../../index';
+import {Button} from '@/index';
 
 const ButtonDemo6: React.FunctionComponent = () => {
   return (

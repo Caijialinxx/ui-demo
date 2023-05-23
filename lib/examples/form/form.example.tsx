@@ -1,5 +1,5 @@
 import React from 'react';
-import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, DemoProps} from '@examples/common';
 import FormDemo1 from './form.demo.1';
 import FormDemo2 from './form.demo.2';
 

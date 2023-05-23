@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, InputNumber} from '../../index';
+import {Input, InputNumber} from '@/index';
 
 const InputDemo4: React.FunctionComponent = () => {
   return (

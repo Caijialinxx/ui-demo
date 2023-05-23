@@ -1,5 +1,5 @@
 import React, {ChangeEventHandler, useState} from 'react';
-import {Input, Radio} from '../../index';
+import {Input, Radio} from '@/index';
 
 const RadioDemo4: React.FunctionComponent = () => {
   const [value, setValue] = useState<string>('Apple');

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AttrProps, createAttrTable, createDemoColumns, createMarkdown, DemoProps} from '../common';
+import {AttrProps, createAttrTable, createDemoColumns, createMarkdown, DemoProps} from '@examples/common';
 import DialogDemo1 from './dialog.demo.1';
 import DialogDemo2 from './dialog.demo.2';
 import DialogDemo3 from './dialog.demo.3';

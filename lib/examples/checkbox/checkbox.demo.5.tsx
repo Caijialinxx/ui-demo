@@ -1,5 +1,5 @@
 import React, {ChangeEventHandler, useState} from 'react';
-import {Checkbox} from '../../index';
+import {Checkbox} from '@/index';
 
 const CheckboxDemo5: React.FunctionComponent = () => {
   const plainOptions = ['苹果', '香蕉', '橘子'];

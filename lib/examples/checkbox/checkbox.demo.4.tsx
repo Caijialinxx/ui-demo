@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox} from '../../index';
+import {Checkbox} from '@/index';
 
 const CheckboxDemo4: React.FunctionComponent = () => {
   const plainOptions = ['苹果', '香蕉', '橘子'];
