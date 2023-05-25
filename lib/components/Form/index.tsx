@@ -52,10 +52,8 @@ const Form: React.FunctionComponent<FormProps> = ({values, labelWidth, rules, it
         case 'checkbox':
           value = e.target.checked;
           break;
-        case 'text':
-          value = e.target.value;
-          break;
         default:
+          value = e.target.value;
           break;
       }
     } else {
